@@ -76,7 +76,7 @@
   (let [files (io/list-files "./home")]
     (println "Linking dotfiles to home directory:")
     (doseq [file files]
-      (println (str "Linking " (:path file) "."))
+      (println (str "Linking " (io/file-name file) "."))
       (symlink file (:home env)))
     (println)))
 
