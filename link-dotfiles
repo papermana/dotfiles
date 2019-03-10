@@ -12,6 +12,8 @@
 
 (defn configure-zsh
   []
+  (println "Setting ZSH as default shell.")
+  (println)
   (sh "chsh" "-s" "/bin/zsh"))
 
 (defn install-brew-packages
@@ -35,12 +37,17 @@
                   "yarn"
                   "zsh"
                   "zsh-completions"]]
+    (println "Installing packages from Homebrew:")
     (doseq [package packages]
-      (sh "brew" "install" package)))
+      (println (str "Installing " package "."))
+      (sh "brew" "install" package))
+    (println))
   (configure-zsh))
 
 (defn configure-iterm
   []
+  (println "Making iterm2 use synced settings.")
+  (println)
   (sh
    "defaults"
    "write com.googlecode.iterm2.plist PrefsCustomFolder -string \"$HOME/iterm2_profile\"")
@@ -57,21 +64,29 @@
                   "postman"
                   "visual-studio-code"
                   "whatsapp"]]
+    (println "Installing apps from Homebrew cask:")
     (doseq [package packages]
-      (sh "brew" "cask install" package)))
+      (println (str "Installing " package "."))
+      (sh "brew" "cask install" package))
+    (println))
   (configure-iterm))
 
 (defn link-home-files
   []
   (let [files (io/list-files "./home")]
+    (println "Linking dotfiles to home directory:")
     (doseq [file files]
-      (symlink file (:home env)))))
+      (println (str "Linking " (:path file) "."))
+      (symlink file (:home env)))
+    (println)))
 
 (defn link-vscode-files
   []
   (let [settings-dir
         (str (:home env)
              "/Library/Application Support/Code/User/")]
+    (println "Linking VSCode settings and keybindings.")
+    (println)
     (symlink "./vscode/settings.json"
              settings-dir)
     (symlink "./vscode/keybindings.json"
@@ -99,15 +114,21 @@
                          "waderyan.gitblame"
                          "yzhang.markdown-all-in-one"
                          "zengxingxin.sort-js-object-keys"]]
+    (println "Installing VSCode extensions:")
     (doseq [extension extensions-list]
-      (sh "code" "--install-extension" extension))))
+      (println (str "Installing " extension "."))
+      (sh "code" "--install-extension" extension))
+    (println)))
 
 (defn -main
   []
+  (println "Installing packages, linking dotfiles, and setting up configs.")
+  (println)
   (install-brew-packages)
   (install-brew-cask-packages)
   (link-home-files)
   (link-vscode-files)
-  (install-vscode-extensions))
+  (install-vscode-extensions)
+  (println "And all done!"))
 
 (set! *main-cli-fn* -main)
