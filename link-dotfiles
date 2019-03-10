@@ -1,0 +1,59 @@
+#!/usr/bin/env plk
+
+(ns link-dotfiles.core
+  (:require
+   [planck.environ :refer [env]]
+   [planck.shell :refer [sh]]
+   [planck.io :as 'io]))
+
+(defn symlink
+  [file target]
+  (let [file-path (if (string? file) file (:path file))]
+    (sh "ln -svf" file-path target)))
+
+(defn link-home-files
+  []
+  (let [files (io/list-files "./home")]
+    (for [file files]
+      (symlink file (:home env)))))
+
+(defn link-vscode-files
+  []
+  (let [settings-dir
+        (str (:home env)
+             "/Library/Application Support/Code/User/")]
+    (symlink "./vscode/settings.json"
+             settings-dir)
+    (symlink "./vscode/keybindings.json"
+             settings-dir)))
+
+(defn install-vscode-extensions
+  []
+  (let [extensions-list ["adamwalzer.string-converter"
+                         "crisward.cjsx"
+                         "dbaeumer.vscode-eslint"
+                         "dbankier.vscode-quick-select"
+                         "esbenp.prettier-vscode"
+                         "jpoissonnier.vscode-styled-components"
+                         "kumar-harsh.graphql-for-vscode"
+                         "mikestead.dotenv"
+                         "mrmlnc.vscode-csscomb"
+                         "ms-vscode.atom-keybindings"
+                         "ms-vscode.Theme-TomorrowKit"
+                         "ms-vsliveshare.vsliveshare"
+                         "octref.vetur"
+                         "oderwat.indent-rainbow"
+                         "ryu1kn.partial-diff"
+                         "silvenon.mdx"
+                         "stkb.rewrap"
+                         "waderyan.gitblame"
+                         "yzhang.markdown-all-in-one"
+                         "zengxingxin.sort-js-object-keys"]
+        (for [extension extensions-list]
+          (sh "code --install-extension" extension))]))
+
+(defn -main
+  []
+  (link-home-files)
+  (link-vscode-files)
+  (install-vscode-extensions))
