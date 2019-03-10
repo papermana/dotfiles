@@ -35,7 +35,7 @@
                   "yarn"
                   "zsh"
                   "zsh-completions"]]
-    (for [package packages]
+    (doseq [package packages]
       (sh "brew" "install" package)))
   (configure-zsh))
 
@@ -57,14 +57,14 @@
                   "postman"
                   "visual-studio-code"
                   "whatsapp"]]
-    (for [package packages]
+    (doseq [package packages]
       (sh "brew" "cask install" package)))
   (configure-iterm))
 
 (defn link-home-files
   []
   (let [files (io/list-files "./home")]
-    (for [file files]
+    (doseq [file files]
       (symlink file (:home env)))))
 
 (defn link-vscode-files
@@ -99,7 +99,7 @@
                          "waderyan.gitblame"
                          "yzhang.markdown-all-in-one"
                          "zengxingxin.sort-js-object-keys"]]
-    (for [extension extensions-list]
+    (doseq [extension extensions-list]
       (sh "code" "--install-extension" extension))))
 
 (defn -main
