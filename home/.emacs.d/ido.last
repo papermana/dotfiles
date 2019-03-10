@@ -1,0 +1,346 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/dominik/Projects/clojure/transducer-exercises/src/" . "transducer_exercises/")
+ ("/Users/dominik/Projects/clojure/transducer-exercises/" . "src/")
+ ("/Users/dominik/Projects/state-machine-test2/src/" . "components/")
+ ("/Users/dominik/Projects/state-machine-test2/" . "src/")
+ ("/Users/dominik/Projects/state-machine-test/src/" . "components/")
+ ("/Users/dominik/Projects/state-machine-test/" . "src/")
+ ("/Users/dominik/Projects/clojure/pizza/src/" . "pizza/")
+ ("/Users/dominik/Projects/clojure/pizza/" . "src/")
+ ("/Users/dominik/Projects/fate-helper/src/clj/" . "fate_helper/")
+ ("/Users/dominik/Projects/fate-helper/env/dev/clj/" . "fate_helper/")
+ ("/Users/dominik/Projects/fate-helper/env/dev/" . "clj/")
+ ("/Users/dominik/Projects/fate-helper/env/" . "dev/")
+ ("/Users/dominik/Projects/fate-helper/resources/public/" . "css/")
+ ("/Users/dominik/Projects/fate-helper/resources/" . "public/")
+ ("/Users/dominik/Projects/fate-helper/src/cljs/" . "fate_helper/")
+ ("/Users/dominik/Projects/fate-helper/src/" . "clj/")
+ ("/Users/dominik/Projects/fate-helper/" . "resources/")
+ ("/Users/dominik/Projects/img-uploader/node_modules/@google-cloud/common/" . "src/")
+ ("/Users/dominik/Projects/img-uploader/node_modules/@google-cloud/" . "common/")
+ ("/Users/dominik/Projects/img-uploader/node_modules/" . "gcs-resumable-upload/")
+ ("/Users/dominik/Projects/img-uploader/" . "public/")
+ ("/Users/dominik/Projects/clojure/gglclj/release/" . "gglclj/")
+ ("/Users/dominik/Projects/clojure/gglclj/src/" . "gglclj/")
+ ("/Users/dominik/Projects/clojure/gglclj/" . "src/")
+ ("/Users/dominik/Projects/clojure/cpp-challenge/src/" . "cpp_challenge/")
+ ("/Users/dominik/Projects/clojure/cpp-challenge/" . "src/")
+ ("/Users/dominik/Projects/reagent-twitter/src/cljc/" . "reagent_twitter/")
+ ("/Users/dominik/Projects/reagent-twitter/src/clj/" . "reagent_twitter/")
+ ("/Users/dominik/Projects/reagent-twitter/resources/public/" . "css/")
+ ("/Users/dominik/Projects/reagent-twitter/resources/" . "public/")
+ ("/Users/dominik/Projects/reagent-twitter/src/cljs/" . "reagent_twitter/")
+ ("/Users/dominik/Projects/reagent-twitter/src/" . "cljs/")
+ ("/Users/dominik/Projects/reagent-twitter/" . "src/")
+ ("/Users/dominik/Projects/reagent-tutorial/src/cljs/" . "reagent_tutorial/")
+ ("/Users/dominik/Projects/reagent-tutorial/src/cljc/" . "reagent_tutorial/")
+ ("/Users/dominik/Projects/reagent-tutorial/src/clj/" . "reagent_tutorial/")
+ ("/Users/dominik/Projects/reagent-tutorial/src/" . "cljs/")
+ ("/Users/dominik/Projects/reagent-tutorial/" . "src/")
+ ("/Users/dominik/Projects/om-tutorial/src/" . "om_tutorial/")
+ ("/Users/dominik/Projects/om-tutorial/resources/" . "public/")
+ ("/Users/dominik/Projects/om-tutorial/" . "src/")
+ ("/Users/dominik/Projects/clojure/om-tutorial/src/" . "om_tutorial/")
+ ("/Users/dominik/Projects/clojure/om-tutorial/resources/" . "public/")
+ ("/Users/dominik/Projects/clojure/om-tutorial/" . "src/")
+ ("/Users/dominik/Projects/clojure/clojure-for-the-brave-and-true/" . "boot-walkthrough/")
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs-2/src/" . "ng_node_starter_app_cli_cljs_2/")
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs-2/" . "src/")
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs/src/cljs/" . "ng_node_starter_app_cli_cljs/")
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs/src/" . "cljs/")
+ ("/Users/dominik/Projects/clojure/phrasebook/" . "pirate_phrases/")
+ ("/Users/dominik/Projects/clojure/playsync/src/" . "playsync/")
+ ("/Users/dominik/Projects/clojure/playsync/" . "src/")
+ ("/Users/dominik/Projects/clojure/the-divine-cheese-code/src/the_divine_cheese_code/" . "visualization/")
+ ("/Users/dominik/Projects/clojure/the-divine-cheese-code/src/" . "the_divine_cheese_code/")
+ ("/Users/dominik/Projects/clojure/the-divine-cheese-code/" . "src/")
+ ("/Users/dominik/Projects/clojure/my-pegthing/src/" . "my_pegthing/")
+ ("/Users/dominik/Projects/clojure/my-pegthing/" . "src/")
+ ("/Users/dominik/Projects/clojure/fwpd/src/" . "fwpd/")
+ ("/Users/dominik/Projects/clojure/fwpd/" . "src/")
+ ("/" . "Users/")
+ ("/Users/dominik/Projects/clojure/clojure-noob/src/" . "clojure_noob/")
+ ("/Users/dominik/Projects/clojure/clojure-noob/" . "src/")
+ ("/Users/dominik/Projects/clojure/" . "transducer-exercises/")
+ ("/Users/dominik/Projects/" . "clojure/")
+ ("/Users/" . "dominik/")
+ ("/Users/dominik/.emacs.d/" . "customizations/")
+ ("/Users/dominik/" . "Projects/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/dominik/Projects/clojure/transducer-exercises/src/transducer_exercises/"
+ "/Users/dominik/Projects/state-machine-test2/src/components/"
+ "/Users/dominik/Projects/state-machine-test2/src/containers/"
+ "/Users/dominik/Projects/state-machine-test2/src/views/"
+ "/Users/dominik/Projects/state-machine-test2/src/"
+ "/Users/dominik/Projects/state-machine-test/src/components/"
+ "/Users/dominik/Projects/state-machine-test2/"
+ "/Users/dominik/Projects/state-machine-test/src/"
+ "/Users/dominik/Projects/state-machine-test/"
+ "/Users/dominik/.emacs.d/customizations/"
+ "/Users/dominik/Projects/state-machine-test/src/machines/"
+ "/Users/dominik/Projects/clojure/pizza/src/pizza/"
+ "/Users/dominik/Projects/fate-helper/resources/public/css/"
+ "/Users/dominik/Projects/fate-helper/src/clj/fate_helper/"
+ "/Users/dominik/Projects/fate-helper/src/cljs/fate_helper/"
+ "/Users/dominik/Projects/fate-helper/"
+ "/Users/dominik/Projects/img-uploader/public/"
+ "/Users/dominik/Projects/img-uploader/views/"
+ "/Users/dominik/Projects/img-uploader/"
+ "/Users/dominik/Projects/img-uploader/node_modules/gcs-resumable-upload/"
+ "/Users/dominik/Projects/img-uploader/node_modules/@google-cloud/common/src/"
+ "/Users/dominik/Projects/clojure/"
+ "/Users/dominik/Projects/cuteness-daily/"
+ "/Users/dominik/Projects/clojure/gglclj/src/gglclj/"
+ "/Users/dominik/Projects/reagent-twitter/src/cljs/reagent_twitter/"
+ "/Users/dominik/Projects/clojure/gglclj/release/"
+ "/Users/dominik/Projects/clojure/gglclj/"
+ "/Users/dominik/Projects/clojure/gglclj/scripts/"
+ "/Users/dominik/Projects/clojure/cpp-challenge/"
+ "/Users/dominik/Projects/clojure/cpp-challenge/src/cpp_challenge/"
+ "/Users/dominik/Projects/reagent-twitter/src/clj/reagent_twitter/"
+ "/Users/dominik/Projects/reagent-twitter/"
+ "/Users/dominik/Projects/temp/"
+ "/Users/dominik/Projects/reagent-twitter/src/cljc/reagent_twitter/"
+ "/Users/dominik/Projects/reagent-tutorial/"
+ "/Users/dominik/Projects/reagent-tutorial/src/cljs/reagent_tutorial/"
+ "/Users/dominik/Projects/om-tutorial/src/om_tutorial/"
+ "/Users/dominik/Projects/om-tutorial/"
+ "/Users/dominik/Projects/om-tutorial/resources/public/"
+ "/Users/dominik/Projects/om-tutorial/script/"
+ "/Users/dominik/Projects/clojure/om-tutorial/src/om_tutorial/"
+ "/Users/dominik/Projects/clojure/om-tutorial/resources/public/"
+ "/Users/dominik/Projects/clojure/om-tutorial/script/"
+ "/Users/dominik/Projects/clojure/om-tutorial/"
+ "/Users/dominik/Projects/clojure/4clojure/"
+ "/Users/dominik/Projects/clojure/clojure-for-the-brave-and-true/boot-walkthrough/"
+ "/Users/dominik/.lein/"
+ "/Users/dominik/Projects/clojure/clojure-for-the-brave-and-true/clojure-noob/"
+ "/Users/dominik/Projects/foo/"
+ "/Users/dominik/Projects/ng-node-starter-app-cli-cljs-2/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "core.clj"
+ "Rating.js"
+ "RatingInput.js"
+ "StarRating.js"
+ "NowPlayingContainer.js"
+ "DiscoverContainer.js"
+ "DiscoverView.js"
+ "HeaderContainer.js"
+ "SearchView.js"
+ "Search.js"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/dominik/Projects/clojure/transducer-exercises/src/transducer_exercises/" (23311 49960 0 0) "core.clj" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/transducer-exercises/src/" (23311 49960 0 0) "transducer_exercises/" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/transducer-exercises/" (23312 10919 0 0) "test/" "target/" "src/" "resources/" "README.md" "project.clj" "LICENSE" "doc/" "CHANGELOG.md" ".lein-repl-history" ".hgignore" ".gitignore" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/" (23311 49960 0 0) "transducer-exercises/" "test2.clj" "test.clj" "symbolic.clj" "pizza/" "om-tutorial/" "monty_hall.clj" "infix_math_parser.clj" "gglclj/" "cpp-challenge/" "clojure-for-the-brave-and-true/" "4clojure/" "../" "./")
+
+ ("/Users/dominik/Projects/" (23310 21721 0 0) "warsawjs-workshop-6-whiteboard/" "temp/" "swiper/" "state-machine-test2/" "state-machine-test/" "spacetime/" "slack-social/" "SICP/" "ruby-learning/" "rss-reader/" "recruitment-questions/" "reagent-twitter/" "reagent-tutorial/" "react-helpling-test/" "react-component-library/" "presentation-software/" "permissions/" "papermana-scripts-all.tgz" "om-tutorial/" "notepal/" "node-f2f-goal-v2/" "node-f2f-goal/" "ninetypercent/" "new-scsslint-config/" "netguruco-hubspot/" "monopoly/" "minefield-2/" "material-new-tab-page/" "kwuikit/" "kw-console/" "jest-alias-preprocessor/" "jakdojde-desktop/" "jaacoo-front/" "jaacoo/" "img-uploader/" "how-we-roll/" "HOMI/" "helpling-presentation/" "hassle/" "fate-helper/" "eslint-config-basic/" "cuteness-daily/" "css-filters-demo/" "create-react-app/" "command-console/" "commafree/" "clojure/" "atom-webinar/" ".DS_Store" "../" "./")
+
+ ("/Users/dominik/" (23313 2560 0 0) "VirtualBox VMs/" "TEMP/" "scripts/" "Qt5.5.1/" "Public/" "Projects/" "PlayOnMac's virtual drives/" "Pictures/" "Music/" "Movies/" "Library/" "helpling-developers.tblk/" "Google Drive/" "go/" "Downloads/" "Documents/" "Desktop/" "Creative Cloud Files/" "Applications/" "AndroidStudioProjects/" ".zshrc~" ".zshrc" ".zsh_history" ".zlogin" ".zcompdump" ".yarnrc" ".yarn/" ".Xauthority" ".wget-hsts" ".vscode/" ".viminfo" ".vagrant.d/" ".v8flags.6.2.414.50.4bd2b007716888ed6bf6c2399a6d7305.json" ".v8flags.6.2.414.46-node.23.4bd2b007716888ed6bf6c2399a6d7305.json" ".v8flags.6.1.534.50.4bd2b007716888ed6bf6c2399a6d7305.json" ".v8flags.5.8.283.41.4bd2b007716888ed6bf6c2399a6d7305.json" ".v8flags.5.1.281.84.dominik.json" ".upterm/" ".Trash/" ".tig_history" ".subversion/" ".ssh/" ".slimzsh/" ".sh_history" ".rvm/" ".rnd" ".python_history" ".pry_history" ".profile~" ".profile" ".pm2/" ".planck_history" ".pkglink_refs" ".oracle_jre_usage/" ".omnisharp/" ".npmrc" ".npm/" ".now.json" ".node_repl_history" ".node-gyp/" ".netrc" ".mono/" ".mongorc.js" ".mkshrc" ".meteorsession" ".meteor/" ".m2/" ".lynxrc" ".lumo_history" ".lumo_cache/" ".local/" ".lesshst" ".lein/" ".irb-history" ".histfile" ".guard_history" ".gradle/" ".gnupg~/" ".gnupg/" ".gnome2/" ".gitconfig~" ".gitconfig" ".gitattributes" ".gglcljrc~" ".gglcljrc" ".gem/" ".forever/" ".eshell/" ".esets/" ".emulator_console_auth_token" ".emacs.d.bak/" ".emacs.d/" ".electron/" ".DS_Store" ".dia-etc/" ".dbshell" ".cups/" ".config/" ".cocoapods/" ".closh/" ".chromedriver-helper/" ".CFUserTextEncoding" ".cache/" ".bundle/" ".boot/" ".black-screen/" ".bashrc" ".bash_sessions/" ".bash_profile" ".bash_history" ".babel.json" ".aws/" ".atom/" ".android/" "#%*mail*#" "../" "./")
+
+ ("/Users/dominik/Projects/state-machine-test2/src/components/" (23297 59340 0 0) "Text.js" "Shade.js" "Search.js" "RatingInput.js" "Rating.js" "NavBar.js" "MoviesGallery.js" "MovieCard.js" "ImageLoader.js" "Header.js" "../" "./")
+
+ ("/Users/dominik/Projects/state-machine-test2/src/views/" (23297 59317 0 0) "SearchView.js" "NowPlayingView.js" "DiscoverView.js" "App.js" "../" "./")
+
+ ("/Users/dominik/Projects/state-machine-test2/src/containers/" (23297 57213 0 0) "SearchContainer.js" "NowPlayingContainer.js" "HeaderContainer.js" "DiscoverContainer.js" "../" "./")
+
+ ("/Users/dominik/Projects/state-machine-test2/src/" (23297 44374 0 0) "views/" "registerServiceWorker.js" "index.js" "containers/" "constants.js" "components/" "AppWrapper.js" "../" "./")
+
+ ("/Users/dominik/Projects/state-machine-test2/" (23296 11166 0 0) "yarn.lock" "src/" "README.md" "public/" "package.json" "node_modules/" ".gitignore" ".git/" ".eslintrc" "../" "./")
+
+ ("/Users/dominik/Projects/state-machine-test/src/components/" (23250 14669 0 0) "PokemonList.js" "PokemonDetails.js" "App.test.js" "App.js" "../" "./")
+
+ ("/Users/dominik/Projects/state-machine-test/src/" (23250 14279 0 0) "registerServiceWorker.js" "machines/" "index.js" "components/" "api.js" "../" "./")
+
+ ("/Users/dominik/Projects/state-machine-test/" (23250 11732 0 0) "yarn.lock" "src/" "README.md" "public/" "package.json" "node_modules/" ".gitignore" ".git/" ".eslintrc" ".env" "../" "./")
+
+ ("/Users/dominik/Projects/state-machine-test/src/machines/" (23249 59375 0 0) "pokemonList.js" "../" "./")
+
+ ("/Users/dominik/.emacs.d/customizations/" (23249 56668 0 0) "ui.el" "shell-integration.el" "setup-paredit.el" "setup-js.el" "setup-clojure.el" "navigation.el" "misc.el" "elisp-editing.el" "editing.el" "../" "./")
+
+ ("/Users/dominik/.emacs.d/" (23249 56549 0 0) "url/" "themes/" "snippets/" "README.md" "projectile-bookmarks.eld" "network-security.data" "init.el" "ido.last" "git-command/" "games/" "elpa/" "customizations/" "cider-history" "backups/" "auto-save-list/" ".smex-items" ".recentf" ".mc-lists.el" ".DS_Store" "../" "./")
+
+ ("/Users/" (22519 53022 0 0) "Shared/" "Guest/" "dominik/" ".localized" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/pizza/src/pizza/" (23191 9548 0 0) "core.clj" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/pizza/src/" (23191 9548 0 0) "pizza/" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/pizza/" (23191 9548 0 0) "test/" "src/" "resources/" "README.md" "project.clj" "LICENSE" "doc/" "CHANGELOG.md" ".hgignore" ".gitignore" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/resources/public/css/" (23166 23628 0 0) "site.css" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/resources/public/" (23166 23628 0 0) "css/" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/src/clj/fate_helper/" (23166 17426 0 0) "server.clj" "handler.clj" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/src/clj/" (23166 17426 0 0) "fate_helper/" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/env/dev/clj/fate_helper/" (23166 17426 0 0) "repl.clj" "middleware.clj" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/env/dev/clj/" (23166 17426 0 0) "fate_helper/" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/env/dev/" (23166 17426 0 0) "cljs/" "clj/" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/env/" (23166 17426 0 0) "prod/" "dev/" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/resources/" (23166 17426 0 0) "public/" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/" (23166 18143 0 0) "target/" "system.properties" "src/" "resources/" "README.md" "project.clj" "Procfile" "LICENSE" "figwheel_server.log" "env/" ".lein-env" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/src/cljs/fate_helper/" (23166 19703 0 0) "core.cljs" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/src/cljs/" (23166 17426 0 0) "fate_helper/" "../" "./")
+
+ ("/Users/dominik/Projects/fate-helper/src/" (23166 17426 0 0) "cljs/" "cljc/" "clj/" "../" "./")
+
+ ("/Users/dominik/Projects/img-uploader/views/" (23139 30848 0 0) "index.mustache" "image.mustache" "../" "./")
+
+ ("/Users/dominik/Projects/img-uploader/" (23139 29916 0 0) "yarn.lock" "views/" "secrets/" "public/" "package.json" "node_modules/" "index.js" ".gitignore" ".git/" ".env.template" ".env" "../" "./")
+
+ ("/Users/dominik/Projects/img-uploader/public/" (23131 34838 0 0) "index.js" "index.html" "index.css" "../" "./")
+
+ ("/Users/dominik/Projects/img-uploader/node_modules/gcs-resumable-upload/" (23131 35971 0 0) "readme.md" "package.json" "LICENSE" "index.js" "cli.js" "../" "./")
+
+ ("/Users/dominik/Projects/img-uploader/node_modules/@google-cloud/common/src/" (23131 35972 0 0) "util.js" "service.js" "service-object.js" "paginator.js" "operation.js" "logger.js" "index.js" "../" "./")
+
+ ("/Users/dominik/Projects/img-uploader/node_modules/@google-cloud/common/" (23131 35971 0 0) "src/" "README.md" "package.json" "node_modules/" "LICENSE" "CONTRIBUTORS" "../" "./")
+
+ ("/Users/dominik/Projects/img-uploader/node_modules/@google-cloud/" (23131 35969 0 0) "storage/" "firestore/" "common-grpc/" "common/" "../" "./")
+
+ ("/Users/dominik/Projects/img-uploader/node_modules/" (23131 40457 0 0) "yargs/" "y18n/" "xtend/" "xmlhttprequest/" "xdg-basedir/" "write-file-atomic/" "wrappy/" "wrap-ansi/" "window-size/" "wide-align/" "websocket-extensions/" "websocket-driver/" "verror/" "vary/" "uuid/" "utils-merge/" "util-deprecate/" "unpipe/" "universalify/" "unique-string/" "uid-number/" "typedarray/" "type-is/" "tweetnacl/" "tunnel-agent/" "tough-cookie/" "through2/" "tar-pack/" "tar/" "stubs/" "strip-json-comments/" "strip-ansi/" "stringstream/" "string_decoder/" "string-width/" "string-format-obj/" "streamsearch/" "streamifier/" "stream-shift/" "stream-events/" "statuses/" "sshpk/" "split-array-stream/" "sntp/" "snakeize/" "signal-exit/" "setprototypeof/" "set-blocking/" "serve-static/" "send/" "semver/" "safe-buffer/" "rimraf/" "retry-request/" "request/" "readable-stream/" "rc/" "raw-body/" "range-parser/" "qs/" "punycode/" "pumpify/" "pump/" "proxy-addr/" "protobufjs/" "promise-polyfill/" "process-nextick-args/" "pinkie-promise/" "pinkie/" "pify/" "performance-now/" "path-to-regexp/" "path-is-absolute/" "parseurl/" "osenv/" "os-tmpdir/" "os-locale/" "os-homedir/" "optjs/" "once/" "on-finished/" "object-assign/" "oauth-sign/" "number-is-nan/" "npmlog/" "nopt/" "node-pre-gyp/" "node-forge/" "negotiator/" "nan/" "ms/" "modelo/" "mkdirp/" "minimist/" "minimatch/" "mime-types/" "mime-db/" "mime/" "methods/" "methmeth/" "merge-descriptors/" "media-typer/" "make-dir/" "long/" "log-driver/" "lodash.once/" "lodash.noop/" "lodash.merge/" "lodash.isstring/" "lodash.isplainobject/" "lodash.isnumber/" "lodash.isinteger/" "lodash.isboolean/" "lodash.includes/" "lodash/" "lcid/" "jws/" "jwa/" "jsprim/" "jsonwebtoken/" "jsonify/" "jsonfile/" "json-stringify-safe/" "json-stable-stringify/" "json-schema-traverse/" "json-schema/" "jsbn/" "isstream/" "isarray/" "is-typedarray/" "is-stream-ended/" "is-obj/" "is-fullwidth-code-point/" "is/" "ipaddr.js/" "invert-kv/" "ini/" "inherits/" "inflight/" "imurmurhash/" "iconv-lite/" "http-signature/" "http-parser-js/" "http-errors/" "hoek/" "hawk/" "hash-stream-validation/" "has-unicode/" "har-validator/" "har-schema/" "gtoken/" "grpc/" "graceful-fs/" "google-proto-files/" "google-p12-pem/" "google-gax/" "google-auto-auth/" "google-auth-library/" "globby/" "glob/" "getpass/" "gcs-resumable-upload/" "gcp-metadata/" "gauge/" "functional-red-black-tree/" "fstream-ignore/" "fstream/" "fs.realpath/" "fs-extra/" "fresh/" "forwarded/" "form-data/" "forever-agent/" "firebase-admin/" "firebase/" "finalhandler/" "faye-websocket/" "fast-json-stable-stringify/" "fast-deep-equal/" "extsprintf/" "extend/" "express-fileupload/" "express/" "etag/" "escape-html/" "ent/" "end-of-stream/" "encodeurl/" "ee-first/" "ecdsa-sig-formatter/" "ecc-jsbn/" "duplexify/" "dotenv/" "dot-prop/" "dom-storage/" "dicer/" "detect-libc/" "destroy/" "depd/" "delegates/" "delayed-stream/" "deep-extend/" "decamelize/" "debug/" "dashdash/" "crypto-random-string/" "cryptiles/" "create-error-class/" "core-util-is/" "cookie-signature/" "cookie/" "content-type/" "content-disposition/" "console-control-strings/" "configstore/" "concat-stream/" "concat-map/" "combined-stream/" "colour/" "code-point-at/" "co/" "cliui/" "caseless/" "capture-stack-trace/" "camelcase/" "bytes/" "bytebuffer/" "busboy/" "bun/" "buffer-equal-constant-time/" "buffer-equal/" "brace-expansion/" "boom/" "body-parser/" "block-stream/" "bcrypt-pbkdf/" "base64url/" "balanced-match/" "aws4/" "aws-sign2/" "asynckit/" "async/" "assert-plus/" "asn1/" "ascli/" "arrify/" "array-uniq/" "array-union/" "array-flatten/" "arguejs/" "are-we-there-yet/" "aproba/" "ansi-regex/" "ajv/" "accepts/" "abbrev/" "@types/" "@protobufjs/" "@google-cloud/" "@firebase/" ".yarn-integrity" ".bin/" "../" "./")
+
+ ("/Users/dominik/Projects/cuteness-daily/" (23081 37628 0 0) "yarn.lock" "ProcessingQueue.js" "package.json" "node_modules/" "index.js" ".gitignore" ".git/" ".env.template" ".env" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/gglclj/" (23048 29499 0 0) "target/" "src/" "scripts/" "release/" "README.md" "project.clj" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/gglclj/src/gglclj/" (23048 29409 0 0) "core.cljs" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/gglclj/release/gglclj/" (23048 26779 0 0) "core.js" "core.cljs" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/gglclj/release/" (23048 26793 0 0) "goog/" "gglclj.js.map" "gglclj.js" "gglclj/" "ED2226B.js" "clojure/" "cljs/" "CEA2105.js" "8E749D5.js" "483CAAE.js" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/gglclj/scripts/" (23044 62233 0 0) "watch.clj" "watch.bat" "watch" "repl.clj" "repl.bat" "repl" "release.clj" "release.bat" "release" "build.clj" "build.bat" "build" "brepl.clj" "brepl.bat" "brepl" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/gglclj/src/" (23044 62233 0 0) "gglclj/" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/cpp-challenge/" (23026 8633 0 0) "test/" "target/" "src/" "resources/" "README.md" "project.clj" "LICENSE" "doc/" "CHANGELOG.md" ".nrepl-port" ".hgignore" ".gitignore" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/cpp-challenge/src/cpp_challenge/" (23026 9311 0 0) "core.clj" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/cpp-challenge/src/" (23026 8246 0 0) "cpp_challenge/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/" (23020 42201 0 0) "target/" "system.properties" "src/" "spec/" "runners/" "resources/" "README.md" "project.clj" "Procfile" "LICENSE" "figwheel_server.log" "env/" ".lein-env" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/src/cljs/reagent_twitter/" (23020 37107 0 0) "core.cljs" "../" "./")
+
+ ("/Users/dominik/Projects/temp/" (23014 38326 0 0) "file1.js" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/src/clj/reagent_twitter/" (23012 49861 0 0) "server.clj" "handler.clj" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/src/cljc/reagent_twitter/" (23011 55887 0 0) "util.cljc" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/src/cljc/" (23011 55887 0 0) "reagent_twitter/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/src/clj/" (23011 55887 0 0) "reagent_twitter/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/resources/public/css/" (23011 55887 0 0) "site.css" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/resources/public/" (23011 55887 0 0) "css/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/resources/" (23011 55887 0 0) "public/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/src/cljs/" (23011 55887 0 0) "reagent_twitter/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-twitter/src/" (23011 55887 0 0) "cljs/" "cljc/" "clj/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-tutorial/" (23010 24205 0 0) "target/" "system.properties" "src/" "resources/" "README.md" "project.clj" "Procfile" "LICENSE" "figwheel_server.log" "env/" ".nrepl-port" ".lein-env" ".gitignore" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-tutorial/src/cljs/reagent_tutorial/" (23010 24931 0 0) "core.cljs" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-tutorial/src/cljs/" (23008 59971 0 0) "reagent_tutorial/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-tutorial/src/cljc/reagent_tutorial/" (23008 59971 0 0) "util.cljc" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-tutorial/src/cljc/" (23008 59971 0 0) "reagent_tutorial/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-tutorial/src/clj/reagent_tutorial/" (23008 59971 0 0) "server.clj" "handler.clj" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-tutorial/src/clj/" (23008 59971 0 0) "reagent_tutorial/" "../" "./")
+
+ ("/Users/dominik/Projects/reagent-tutorial/src/" (23008 59971 0 0) "cljs/" "cljc/" "clj/" "../" "./")
+
+ ("/Users/dominik/Projects/om-tutorial/" (22989 7864 0 0) "target/" "src/" "script/" "resources/" "project.clj" "figwheel_server.log" ".nrepl-port" "../" "./")
+
+ ("/Users/dominik/Projects/om-tutorial/src/om_tutorial/" (22982 33907 0 0) "core.cljs" "../" "./")
+
+ ("/Users/dominik/Projects/om-tutorial/src/" (22979 29092 0 0) "om_tutorial/" "../" "./")
+
+ ("/Users/dominik/Projects/om-tutorial/resources/public/" (22979 28998 0 0) "index.html" "../" "./")
+
+ ("/Users/dominik/Projects/om-tutorial/resources/" (22979 28950 0 0) "public/" "../" "./")
+
+ ("/Users/dominik/Projects/om-tutorial/script/" (22979 28905 0 0) "fighwheel.clj" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/om-tutorial/src/om_tutorial/" (22936 45610 0 0) "../" "./")
+
+ ("/Users/dominik/Projects/clojure/om-tutorial/src/" (22936 45610 0 0) "om_tutorial/" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/om-tutorial/" (22936 45610 0 0) "src/" "script/" "resources/" "project.clj" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/om-tutorial/resources/public/" (22936 45568 0 0) "index.html" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/om-tutorial/resources/" (22936 44997 0 0) "public/" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/om-tutorial/script/" (22936 44951 0 0) "figwheel.clj" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/4clojure/" (22862 26474 0 0) "77_anagram_finder.clj" "74_filter_perfect_squares.clj" "58_function_composition.clj" "54_partition_a_sequence.clj" "53_longest_increasing_sub_seq.clj" "49_split_sequence.clj" "44_rotate_sequence.clj" "43_reverse_interleave.clj" "41_drop_every_nth.clj" "34_range.clj" "31_compress_a_sequence.clj" "30_compress_a_sequence.clj" "28_flatten_a_sequence.clj" "20_penultimate_element.clj" "128_recognize_playing_cards.clj" "105_identify_keys_and_values.clj" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/clojure-for-the-brave-and-true/boot-walkthrough/" (22851 64992 0 0) "../" "./")
+
+ ("/Users/dominik/Projects/clojure/clojure-for-the-brave-and-true/" (22851 64992 0 0) "the-divine-cheese-code/" "playsync/" "phrasebook/" "pegthing/" "my-pegthing/" "fwpd/" "exercises-9.clj" "exercises-8.clj" "exercises-7.clj" "exercises-4.clj" "exercises-3.clj" "exercises-2.clj" "exercises-13.clj" "exercises-10.clj" "exercises-1.clj" "clojure-noob/" "boot-walkthrough/" "../" "./")
+
+ ("/Users/dominik/.lein/" (22831 2205 0 0) "repl-port" "repl-history" "indices/" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/clojure-for-the-brave-and-true/clojure-noob/" (22841 24457 0 0) "test/" "target/" "src/" "resources/" "README.md" "project.clj" "LICENSE" "doc/" "CHANGELOG.md" ".lein-repl-history" ".hgignore" ".gitignore" "../" "./")
+
+ ("/Users/dominik/Projects/foo/" (22843 41184 0 0) "bar.sh" ".gitkeep" ".gitignore" ".eslintrc.js" ".eslintignore" ".env.test.example" ".env.development.example" ".dockerignore" "../" "./")
+
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs-2/" (22843 9866 0 0) "target/" "src/" "resources/" "README.md" "project.clj" "dev/" ".gitignore" "../" "./")
+
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs-2/src/ng_node_starter_app_cli_cljs_2/" (22843 9353 0 0) "core.cljs" "../" "./")
+
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs-2/src/" (22843 9109 0 0) "ng_node_starter_app_cli_cljs_2/" "../" "./")
+
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs/" (22843 8096 0 0) "test/" "target/" "src/" "resources/" "README.md" "project.clj" "LICENSE" "doc/" "CHANGELOG.md" ".hgignore" ".gitignore" "../" "./")
+
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs/src/cljs/ng_node_starter_app_cli_cljs/" (22843 7962 0 0) "../" "./")
+
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs/src/cljs/" (22843 7962 0 0) "ng_node_starter_app_cli_cljs/" "../" "./")
+
+ ("/Users/dominik/Projects/ng-node-starter-app-cli-cljs/src/" (22843 7962 0 0) "cljs/" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/phrasebook/pirate_phrases/" (22841 21683 0 0) "Greetings.java" "Farewells.java" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/phrasebook/" (22841 21415 0 0) "PiratePhrases.java" "PiratePhrases.class" "pirate_phrases/" "../" "./")
+
+ ("/Users/dominik/Projects/clojure/playsync/src/playsync/" (22831 3443 0 0) "core.clj" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

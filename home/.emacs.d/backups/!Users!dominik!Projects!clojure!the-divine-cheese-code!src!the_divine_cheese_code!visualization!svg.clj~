@@ -1,0 +1,54 @@
+(ns the-divine-cheese-code.visualization.svg
+  (:require [clojure.string :as s])
+  (:refer-clojure :exclude [min max]))
+
+(defn latlng->point
+  "Convert lat/lng map to comma-separated string"
+  [latlng]
+  (str (:lng latlng) "," (:lat latlng)))
+
+(defn points
+  [locations]
+  (->> locations
+       (map latlng->point)
+       (clojure.string/join " ")))
+
+(defn comparator-over-maps
+  [comparison-fn ks]
+  (fn [maps]
+    (zipmap ks
+            (map (fn [k] (apply comparison-fn (map k maps)))
+                 ks))))
+
+(defn comparator-over-maps
+  [comparison-fn ks]
+  (fn [maps]
+    (->> ks
+         (map #(->> maps
+                    (map %)
+                    (apply comparison-fn)))
+         (zipmap ks))))
+
+(def min (comparator-over-maps clojure.core/min [:lat :lng]))
+(def max (comparator-over-maps clojure.core/max [:lat :lng]))
+
+(defn translate-to-00
+  [locations]
+  (let [mincoords (min locations)]
+    (map #(merge-with - % mincoords) locations)))
+
+(defn scale
+  [width height locations]
+  (let [maxcoords (max locations)
+        ratio {:lat (/ height (:lat maxcoords))
+               :lng (/ width (:lng maxcoords))}]
+    (map #(merge-with * % ratio) locations)))
+
+(merge-with (fn [& args] (second args))
+            {:foo "bar"}
+            {:bar "baz"}
+            {:baz "qun"
+             :qun "qux"}
+            {:foo "qux"})
+
+

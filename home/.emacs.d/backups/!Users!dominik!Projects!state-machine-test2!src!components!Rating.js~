@@ -1,0 +1,28 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components'
+
+import Text from './Text';
+
+const getColor = rating => {
+  if (rating < 50) {
+    return 'red';
+  } else if (rating < 75) {
+    return 'yellow';
+  } else {
+    return 'green';
+  }
+};
+
+const Rating = styled.div.attrs({
+  children: ({ rating }) => <Text size="small">{rating}%</Text>,
+})`
+  border-radius: 50%;
+  background-color: ${({ rating }) => getColor(rating)};
+`;
+
+Rating.propTypes = {
+  rating: PropTypes.number.isRequired,
+};
+
+export default Rating;

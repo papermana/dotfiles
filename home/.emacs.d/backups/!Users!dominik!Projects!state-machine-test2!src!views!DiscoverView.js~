@@ -1,0 +1,19 @@
+import React from 'react';
+import Flex from 'styled-flex-component';
+
+import DiscoverContainer from '../containers/DiscoverContainer';
+import MoviesGallery from '../components/MoviesGallery';
+
+const renderDiscoverView = ({
+  data,
+}) => (
+  <Flex column alignCenter>
+    <MoviesGallery data={data} />
+  </Flex>
+);
+
+const DiscoverView = () => (
+  <DiscoverContainer render={renderDiscoverView} />
+);
+
+export default DiscoverView;

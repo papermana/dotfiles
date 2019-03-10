@@ -1,0 +1,3 @@
+const { obj, f } = require('./file2.js');
+
+console.log(f('foo'));

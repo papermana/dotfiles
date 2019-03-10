@@ -1,0 +1,15 @@
+import React from 'react';
+import Flex from 'styled-flex-component';
+
+import NowPlayingContainer from '../containers/NowPlayingContainer';
+import MoviesGallery from '../components/MoviesGallery';
+
+const NowPlayingView = () => (
+  <Flex justifyCenter>
+    <NowPlayingContainer render={data => (
+      <MoviesGallery data={data} />
+    )} />
+  </Flex>
+);
+
+export default NowPlayingView;

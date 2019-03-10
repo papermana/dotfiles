@@ -1,0 +1,63 @@
+(ns om-tutorial.core
+  (:require [goog.dom :as gdom]
+            [om.next :as om :refer-macros [defui]]
+            [om.dom :as dom]))
+
+(enable-console-print!)
+
+(def app-state (atom {:count 0}))
+
+(defui Counter
+  Object
+  (render
+   [this]
+   (let [{:keys [count]} (om/props this)]
+     (dom/div
+      nil
+      (dom/span nil (str "Count: " count))
+      (dom/button
+       #js {:onClick (fn [e] (swap! app-state update-in [:count] inc))}
+       "Click me!")))))
+
+(def counter (om/factory Counter))
+
+(defui HelloWorld
+  Object
+  (render
+   [this]
+   (dom/div nil (:title (om/props this)))))
+
+(def hello (om/factory HelloWorld))
+
+(defui Hellos
+  Object
+  (render
+   [this]
+   (apply dom/div nil (map #(hello {:title (str "Hello " %) :react-key %})
+                           (range 1 (inc (:count (om/props this))))))))
+
+(def hellos (om/factory Hellos))
+
+(defui App
+  Object
+  (render
+   [this]
+   (let [{:keys [count]} (om/props this)]
+     (dom/div
+      nil
+      (counter {:count count})
+      (hellos {:count count})))))
+
+
+
+;; (js/ReactDOM.render (hello {:title "Hello World"})
+;;                     (gdom/getElement "app"))
+
+(def reconciler (om/reconciler {:state app-state}))
+
+(om/add-root! reconciler App (gdom/getElement "app"))
+
+;; (js/ReactDOM.render
+;;  (apply dom/div nil (map #(hello {:title (str "Hello " %) :react-key %})
+;;                          (range 1 5)))
+;;  (gdom/getElement "app"))

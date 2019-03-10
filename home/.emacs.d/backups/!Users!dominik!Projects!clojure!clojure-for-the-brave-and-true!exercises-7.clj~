@@ -1,0 +1,218 @@
+(defmacro backwards
+  [form]
+  (reverse form))
+
+(backwards (" backwards" " am" "I" str))
+
+(def math-operators '[+ - * /])
+
+(defmacro math
+  [form]
+  (if-let [operator (some #{(nth form 1)} math-operators)]
+    (list operator (nth form 0) (nth form 2))
+    form))
+
+(defmacro math
+  [form]
+  (println form)
+  (cond (empty? form) '()
+        (empty? (rest form)) (list (nth form 0))
+        (some #{(nth form 1)} math-operators) (list (concat (list (nth form 1) (nth form 0)) (math (rest (nth form 1)))))
+        :else (concat (list (nth form 0)) (math (rest (nth form 0))))))
+
+(defmacro math
+  [form]
+  (println form)
+  (cond (empty? form) '(),
+        (empty? (rest form)) (list (nth form 0)),
+        (some #{(nth form 1)} math-operators)
+        (list (concat (list (nth form 1) (nth form 0))
+                      (math (rest (rest form))))),
+        :else (cons (nth form 0) (math (rest form)))))
+
+(defmacro math
+  [form]
+  (if (or (empty? form)
+          (empty? (rest form)))
+    form
+    (if (some #{(nth form 1)} math-operators)
+      (list (concat (list (nth form 1) (nth form 0))
+                    (list math (rest (rest form)))))
+      (cons (nth form 0) (list math (rest form))))))
+
+(math (+ 1))
+(math (+ 1 2))
+(math (1 + 2))
+(math (3 / 3))
+
+(my->> [1 2 3]
+       (map (partial * 2))
+       (take 2))
+
+(my->> [[1] [2] [3]]
+       (flatten))
+
+((comp (partial take 2)
+       (partial map (partial * 2)))
+ [1 2 3])
+
+(take 2
+      (map (partial * 2)
+           [1 2 3]))
+
+(defmacro my->>
+  [& forms]
+  (reduce (fn [acc next] (concat next [acc])) forms))
+
+
+(defmacro named-print
+  [val]
+  (list print (str val) (list eval val)))
+
+(defmacro named-print
+  [val]
+  (list 'print (str val) (eval 'val)))
+
+(let [foo 1]
+  (named-print foo))
+
+'(1 2 3)
+
+(defmacro foo
+  [bar]
+  (list 'quote ,bar))
+
+(let [test 1]
+  (foo test))
+
+(defmacro bar
+  [a b]
+  (quote (list '+ a b)))
+
+(bar 0 0)
+
+(defmacro ignore-last-operand
+  [function-call]
+  (butlast function-call))
+
+(ignore-last-operand (+ 1 2 10))
+
+(ignore-last-operand (+ 1 2 (println "look at me!!!")))
+
+(macroexpand '(ignore-last-operand (+ 1 2 10)))
+
+(macroexpand '(ignore-last-operand (+ 1 2 (println "look at me!!!"))))
+
+(defmacro infix
+  [infixed]
+  (list (second infixed)
+        (first infixed)
+        (last infixed)))
+
+(infix (1 + 2))
+
+(defmacro math
+  [form]
+  (defn inner
+    [form]
+    (if (or (empty? form)
+            (empty? (rest form)))
+      (first form)
+      (if (some #{(second form)} math-operators)
+        (concat (list (second form)
+                      (first form))
+                (list (inner (rest (rest form)))))
+        (cons (first form)
+              (inner (rest form))))))
+  (inner form))
+
+(macroexpand '(math (1 + 2)))
+(math (1 + 2))
+
+(macroexpand '(math (1 + 2 * 3 / 6)))
+(math (1 + 2 * 3 / 6))
+
+(macroexpand '(math (1 + 3 * 4 - 5)))
+
+(def math-operators
+  {'+ :low
+   '- :low
+   '* :high
+   '/ :high})
+
+(defmacro math
+  [form]
+  (defn transform-high-precedence
+    [form]
+    (if (or (empty? form)
+            (empty? (rest form)))
+      form
+      (if-let [operator (some #(when (= (first %) (second form)) %)
+                              math-operators)]
+        (let [precedence (second operator)]
+          (if (= precedence :high)
+            (cons (list (second form) (first form) (nth form 2))
+                  (transform-high-precedence (rest (rest form))))
+            (cons (first form)
+                  (transform-high-precedence (rest form)))))
+        (cons (first form)
+                  (transform-high-precedence (rest form))))))
+  (transform-high-precedence form))
+
+(defmacro math
+  [form]
+  (defn gen-transform
+    [wanted-precedence]
+    (fn self
+      [form]
+      (if (or (empty? form)
+              (empty? (rest form)))
+        form
+        (if-let [operator (some #(when (= (first %) (second form)) %)
+                                math-operators)]
+          (let [precedence (second operator)]
+            (if (= precedence wanted-precedence)
+              (cons (list (second form) (first form) (nth form 2))
+                    (self (rest (rest form))))
+              (cons (first form)
+                    (self (rest form)))))
+          (cons (first form)
+                (self (rest form)))))))
+  (def transform-high-precedence (gen-transform :high))
+  (def transform-low-precedence (gen-transform :low))
+  (->> form
+       transform-high-precedence
+       ))
+
+(macroexpand '(math (1 + 2 - 3 * 2)))
+
+(defmacro math
+  [form]
+  (defn gen-transform
+    [wanted-precedence]
+    (fn self
+      [form]
+      (if (or (empty? form)
+              (empty? (rest form)))
+        form
+        (if-let [operator (some #{(second form)}
+                                (map first math-operators))]
+          (let [precedence (get math-operators operator)]
+            (if (= precedence wanted-precedence)
+              (self (cons (list (second form)
+                                (first form)
+                                (nth form 2))
+                          (rest (rest (rest form)))))
+              (cons (first form) (self (rest form)))))
+          (cons (first form) (self (rest form)))))))
+  (def transform-high-precedence (gen-transform :high))
+  (def transform-low-precedence (gen-transform :low))
+  (->> form
+       transform-high-precedence
+       transform-low-precedence
+       first))
+
+(macroexpand '(math (1 + 2 - 3 * 2)))
+(math (1 + 2 - 3 * 2))
+(macroexpand '(math (1 + 3 * 4 - 5)))
+(math (1 + 3 * 4 - 5))

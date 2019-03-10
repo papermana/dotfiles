@@ -1,0 +1,46 @@
+[user]
+	name = Dominik Rowicki
+	email = dominik.rowicki@netguru.co
+	signingkey = 4DA1E37EA2F0F0D6
+[core]
+	editor = mg
+	autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFXM
+[help]
+[color]
+	ui = always
+[color "diff-highlight"]
+	oldNormal = red
+	oldHighlight = "red 52"
+	newNormal = green
+	newHighlight = "green 22"
+[alias]
+	s = status
+	lga = log --graph --oneline --decorate
+	lgo = log --oneline --no-decorate
+	lgm = !git lgo master..
+	diffc = diff --cached
+	a = add
+	track-all = add --all --intent-to-add
+	ca = commit --amend
+	ri = rebase -i
+	rc = rebase --continue
+	cpc = cherry-pick --continue
+	cp = cherry-pick
+	rl = !git reset --soft HEAD~1 && git reset HEAD
+	update-times = rebase --force-rebase --ignore-date
+	po = !git push -u origin \"$(git rev-parse --abbrev-ref HEAD)\"
+	initial-commit = commit --allow-empty -m \"Initial commit\"
+	gaysect = bisect
+	straightsect = bisect
+
+[merge]
+	conflictStyle = diff3
+[rerere]
+	enabled = true
+[rebase]
+	abbreviateCommands = true
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true

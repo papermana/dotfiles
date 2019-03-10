@@ -1,0 +1,15 @@
+import React from 'react';
+import { connect } from 'stent/lib/react';
+
+const _Foo = ({ data: { name } }) => <strong>{name}</strong>;
+
+const Foo = ({ match: { params: { name } } }) => {
+  const Bar = connect(_Foo)
+    .with('pokemonList')
+    .map(({ state: { data } }) => ({
+      foo: console.log(data),
+      data: data.find(pokemon => pokemon.name === name) || { name: 'foo' },
+    }));
+
+  return <Bar />;
+}

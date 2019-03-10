@@ -1,0 +1,560 @@
+(define (eval exp env)
+  (cond ((self-evaluating? exp) exp)
+        ((variable? exp) (lookup-variable-value exp env))
+        ((quoted? exp) (text-of-quotation exp))
+        ((assignment? exp) (eval-assignment exp env))
+        ((definition? exp) (eval-definition exp env))
+        ((if? exp) (eval-if exp env))
+        ((lambda? exp) (make-procedure (lambda-parameters exp)
+                                       (lambda-body exp)
+                                       env))
+        ((begin? exp) (eval-sequence (begin-actions exp) env))
+        ((cond? exp) (eval (cond->if exp) env))
+        ((application? exp) (apply (eval (operator exp) env)
+                                   (list-of-values (operands exp) env)))
+        (else (error "Unknown expression type: EVAL" exp))))
+
+(define (apply procedure arguments)
+  (cond ((primitive-procedure? procedure)
+         (apply-primitive-procedure procedure arguments))
+        ((compount-procedure? procedure)
+         (eval-sequence
+          (procedure-body procedure)
+          (extend-environment (procedure-parameters procedure)
+                              arguments
+                              (procedure-environment procedure))))
+        (else
+         (error "Unknown procedure type: APPLY" procedure))))
+
+(define (list-of-values exps env)
+  (if (no-operands? exps)
+      '()
+      (cons (eval (first-operand exps) env)
+            (list-of-values (rest-operands exps) env))))
+
+(define (eval-if exp env)
+  (if (true? (eval (if-predicate exp) env))
+      (eval (if-consequent exp) env)
+      (eval (if-alternative exp) env)))
+
+(define (eval-sequence exps env)
+  (cond ((last-exp? exps)
+         (eval (first-exp exps) env))
+        (else
+         (eval (first-exp exps) env)
+         (eval-sequence (rest-exps exps) env))))
+
+(define (eval-assignment exp env)
+  (set-variable-value!
+   (assignment-variable exp)
+   (eval (assignment-value exp) env)
+   env)
+  'ok)
+
+(define (eval-definition exp env)
+  (define-variable!
+    (definition-variable exp)
+    (eval (definition-value exp) env)
+    env)
+  'ok)
+
+
+;; 4.1
+
+; note to self: this exercise is about _side effects_
+
+; definition relying on implicit cons-based order
+(define (list-of-values exps env)
+  (if (no-operands? exps)
+      '()
+      (cons (eval (first-operand exps) env)
+            (list-of-values (rest-operands exps) env))))
+
+; explicitly left-to-right definition
+(define (list-of-values exps env)
+  (if (no-operands? exps)
+      '()
+      (let ((left (eval (first-operand exps) env)))
+        (cons left
+              (list-of-values (rest-operands exps) env)))))
+
+; explicitly right-to-left definition
+(define (list-of-values exps env)
+  (if (no-operands? exps)
+      '()
+      (let* ((left (eval (first-operand exps) env))
+             (right (list-of-values (rest-operands exps) env)))
+        (cons left right))))
+
+
+;;
+
+(define (self-evaluating? exp)
+  (cond ((number? exp) true)
+        ((string? exp) true)
+        (else false)))
+
+(define (variable? exp) (symbol? exp))
+
+(define (quoted? exp) (tagged-list? exp 'quote))
+
+(define (text-of-quotation exp) (cadr exp))
+
+(define (tagged-list? exp tag)
+  (if (pair? exp)
+      (eq? (car exp) tag)
+      false))
+
+(define (assignment? exp) (tagged-list? exp 'set!))
+
+(define (assignment-variable exp) (cadr exp))
+
+(define (assignment-value exp) (caddr exp))
+
+(define (definition? exp) (tagged-list? exp 'define))
+
+(define (definition-variable exp)
+  (if (symbol? (cadr exp))
+      (cadr exp)
+      (caadr exp)))
+
+(define (definition-value exp)
+  (if (symbol? (cadr exp))
+      (caddr exp)
+      (make-lambda (cdadr exp)
+                   (cddr exp))))
+
+(define (lambda? exp) (tagged-list? exp 'lambda))
+
+(define (lambda-parameters exp) (cadr exp))
+
+(define (lambda-body exp) (cddr exp))
+
+(define (make-lambda parameters body)
+  (cons 'lambda (cons parameters body)))
+
+(define (if? exp) (tagged-list? exp 'if))
+
+(define (if-predicate exp) (cadr exp))
+
+(define (if-consequent exp) (caddr exp))
+
+(define (if-alternative exp)
+  (if (not (null? (cdddr exp)))
+      (cadddr exp)
+      'false))
+
+(define (make-if predicate consequent alternative)
+  (list 'if predicate consequent alternative))
+
+(define (begin? exp) (tagged-list? exp 'begin))
+
+(define (begin-actions exp) (cdr exp))
+
+(define (last-exp? seq) (null? (cdr seq)))
+
+(define (first-exp seq) (car seq))
+
+(define (rest-exps seq) (cdr seq))
+
+(define (sequence->exp seq)
+  (cond ((null? seq) seq)
+        ((last-exp? seq) (first-exp seq))
+        (else (make-begin seq))))
+
+(define (make-begin seq) (cons 'begin seq))
+
+(define (application? exp) (pair? exp))
+
+(define (operator exp) (car exp))
+
+(define (operands exp) (cdr exp))
+
+(define (no-operands? ops) (null? ops))
+
+(define (first-operand ops) (car ops))
+
+(define (rest-operands ops) (cdr ops))
+
+(define (cond? exp) (tagged-list? exp 'cond))
+
+(define (cond-clauses exp) (cdr exp))
+
+(define (cond-else-clause? clause)
+  (eq? (cond-predicate clause) 'else))
+
+(define (cond-predicate clause) (car clause))
+
+(define (cond-actions clause) (cdr clause))
+
+(define (cond->if exp) (expand-clauses (cond-clauses exp)))
+
+(define (expand-clauses clauses)
+  (if (null? clauses)
+      'false
+      (let ((first (car clauses))
+            (rest (cdr clauses)))
+        (if (cond-else-clause? first)
+            (if (null? rest)
+                (sequence->exp (cond-actions first))
+                (error "ELSE clause isn't last: COND->IF" clauses))
+            (make-if (cond-predicate first)
+                     (sequence->exp (cond-actions first))
+                     (expand-clauses rest))))))
+
+
+;; 4.2
+
+; a)
+
+; Since we can't know all the possible symbols that user-defined functions will be using as identifiers, we will treat procedure application as a default case if we determin that all the other, more specific, cases do not apply. That is, we will first check whether the expression is assignment, conditional etc., and if it is none of those, and it is a list, then we will treat it as a procedure application by default. There is no better way for us to determin that it is supposed to be a function call.
+
+; Due to this, there is an obvious problem with Louis's plan. All assignment expressions are lists -- therefore valid function calls -- so if we don't check for them before checking if an expression can be a procedure application, we will never get to that part of our code.
+
+; b)
+
+(define (application? exp) (tagged-list? exp 'call))
+
+(define (operator exp) (cadr exp))
+
+(define (operands exp) (cddr exp))
+
+
+;; 4.3
+
+; "regular" style
+(define (eval exp env)
+  (cond ((self-evaluating? exp) exp)
+        ((variable? exp) (lookup-variable-value exp env))
+        ((quoted? exp) (text-of-quotation exp))
+        ((assignment? exp) (eval-assignment exp env))
+        ((definition? exp) (eval-definition exp env))
+        ((if? exp) (eval-if exp env))
+        ((lambda? exp) (make-procedure (lambda-parameters exp)
+                                       (lambda-body exp)
+                                       env))
+        ((begin? exp) (eval-sequence (begin-actions exp) env))
+        ((cond? exp) (eval (cond->if exp) env))
+        ((application? exp) (apply (eval (operator exp) env)
+                                   (list-of-values (operands exp) env)))
+        (else (error "Unknown expression type: EVAL" exp))))
+
+; data-directed style
+(define (eval-package)
+  (put 'eval 'quote (lambda (exp env) (text-of-quotation exp)))
+  (put 'eval 'set! eval-assignment)
+  (put 'eval 'define eval-definition)
+  (put 'eval 'if eval-if)
+  (put 'eval 'lambda (lambda (exp env) (make-procedure
+                                        (lambda-parameters exp)
+                                        (lambda-body exp)
+                                        env)))
+  (put 'eval 'begin (lambda (exp env) (eval-sequence
+                                       (begin-actions exp)
+                                       env)))
+  (put 'eval 'cond (lambda (exp env) (eval (cond->if exp) env))))
+
+(define (eval exp env)
+  (cond ((self-evaluating? exp) exp)
+        ((variable? exp) (lookup-variable-value exp env))
+        (else (let ((func (get 'eval (operator exp))))
+                (if func
+                    (func exp env)
+                    (apply (eval (operator exp) env)
+                           (list-of-values (operands exp) env)))))))
+
+
+;; 4.4
+
+; completely new procedures
+(define (and? exp) (tagged-list? exp 'and))
+
+(define (or? exp) (tagged-list? exp 'or))
+
+(define (and-clauses exp) (cdr exp))
+
+(define (or-clauses exp) (cdr exp))
+
+(define (eval-and exp)
+  (if (null? (and-clauses exp))
+      true
+      (and-expand (and-clauses exp))))
+
+(define (eval-or exp)
+  (if (null? (or-clauses exp))
+      false
+      (or-expand (or-clauses exp))))
+
+(define (and-expand remaining)
+  (let ((first (car remaining))
+        (rest (cdr remaining)))
+    (if (null? rest)
+        first
+        (if (not first)
+            first
+            (and-expand rest)))))
+
+(define (or-expand remaining)
+  (let ((first (car remaining))
+        (rest (cdr remaining)))
+    (if (null? rest)
+        first
+        (if first
+            first
+            (or-expand rest)))))
+
+; derived procedures
+
+(define (eval-and exp)
+  (if (null? (and-clauses exp))
+      true
+      (cons 'cond
+            (and-expand (and-clauses exp)))))
+
+(define (eval-or exp)
+  (if (null? (or-clauses exp))
+      false
+      (cons 'cond
+            (or-expand (or-clauses exp)))))
+
+(define (and-expand remaining)
+  (let ((first (car remaining))
+        (rest (cdr remaining)))
+      (if (null? rest)
+          (list 'else first)
+          (cons (list (list 'not first) first)
+                (and-expand rest)))))
+
+(define (or-expand remaining)
+  (let ((first (car remaining))
+        (rest (cdr remaining)))
+      (if (null? rest)
+          (list 'else first)
+          (cons (list first first)
+                (or-expand rest)))))
+
+(and foo bar baz)
+
+(cond ((not foo) foo) ((not bar) bar) (else baz))
+
+(or foo bar baz)
+
+(cond (foo foo) (bar bar) (else baz))
+
+
+;; 4.5
+
+; original procedure for comparison (unchanged functions ommited)
+(define (expand-clauses clauses)
+  (if (null? clauses)
+      'false
+      (let ((first (car clauses))
+            (rest (cdr clauses)))
+        (if (cond-else-clause? first)
+            (if (null? rest)
+                (sequence->exp (cond-actions first))
+                (error "ELSE clause isn't last: COND->IF" clauses))
+            (make-if (cond-predicate first)
+                     (sequence->exp (cond-actions first))
+                     (expand-clauses rest))))))
+
+; modified procedure and new procedure
+(define (expand-clauses clauses)
+  (if (null? clauses)
+      'false
+      (let ((first (car clauses))
+            (rest (cdr clauses)))
+        (if (cond-else-clause? first)
+            (if (null? rest)
+                (sequence->exp (cond-actions first))
+                (error "ELSE clause isn't last: COND->IF" clauses))
+            (if (cond-arrow-syntax? first)
+                (make-if (cond-predicate first)
+                         (arrow-clause->lambda first)
+                         (expand-clauses rest))
+                (make-if (cond-predicate first)
+                         (sequence->exp (cond-actions first))
+                         (expand-clauses rest)))))))
+
+(define (cond-arrow-syntax? clause)
+  (eq? (cadr clause) '=>))
+
+(define (arrow-clause->lambda clause)
+  (let ((test (car clause))
+        (procedure (caddr clause)))
+    (make-lambda test procedure)))
+
+
+;; 4.6
+
+; map used for simplicity
+
+(define (let? exp) (tagged-list? exp 'let))
+
+(define (let-arguments exp) (cadr exp))
+
+(define (let-body exp) (cddr exp))
+
+(define (let->combination exp)
+  (cons (make-lambda (map car (let-arguments exp))
+                     (let-body exp))
+        (map cadr (let-arguments exp))))
+
+
+;; 4.7
+
+(define (let*? exp) (tagged-list? exp 'let*))
+
+(define (let*->nested-lets exp)
+  (let*-expand (let-arguments exp) (let-body exp)))
+
+(define (let*-expand remaining body)
+  (let ((first (car remaining))
+        (rest (cdr remaining)))
+      (if (null? rest)
+          (list 'let (list first) body)
+          (list 'let (list first) (let*-expand rest body)))))
+
+
+;; 4.8
+
+(define (named-let? exp) (symbol? (let-name exp)))
+
+(define (let-name exp) (cadr exp))
+
+(define (let-arguments exp)
+  (if (named-let? exp)
+      (caddr exp)
+      (cadr exp)))
+
+(define (let-body exp)
+  (if (named-let? exp)
+      (cdddr exp)
+      (cddr exp)))
+
+; The following defines the function specified by the named let in the _current_ environment
+(define (let->combination exp env)
+  (if (named-let? exp)
+      (eval-definition (list 'define
+                             (let-name exp)
+                             (map car (let-arguments exp))
+                             (let-body exp))
+                       env))
+  (cons (make-lambda (map car (let-arguments exp))
+                     (let-body exp))
+        (map cadr (let-arguments exp))))
+
+; Now we are using a hypothetical get-env function in order to create the binding for our named let only _inside_ of that named let
+(define (let->combination exp env)
+  (let ((func (make-procedure (map car (let-arguments exp))
+                              (let-body exp)
+                              env)))
+    (if (named-let? exp)
+        (define-variable! (let-name exp) func (get-env func))
+        (cons func (map cadr (let-arguments exp))))))
+
+
+;; 4.9
+
+; C-style for loop, use e.g.
+; (for (i 0) (< i 10) (+ i 1)
+;   (some-expression))
+; Note we're using the hypothetical get-env function again.
+
+(define (for-loop? exp) (tagged-list? exp 'for))
+
+(define (for-loop-symbol exp) (caadr exp))
+
+(define (for-loop-initial exp) (cadadr exp))
+
+(define (for-loop-test exp) (caddr exp))
+
+(define (for-loop-increase exp) (cadddr exp))
+
+(define (for-loop-body exp) (cddddr exp))
+
+(define (eval-for-loop exp env)
+  (let ((body-proc (make-procedure (for-loop-symbol exp)
+                                   (for-loop-body exp)
+                                   env)))
+    (let ((iterator-proc
+           (make-procedure
+            (for-loop-symbol exp)
+            (list 'if (for-loop-test exp)
+                  (list 'begin
+                        (list body-proc (for-loop-symbol exp))
+                        (list 'self
+                              (for-loop-increase exp)))
+                  'done)
+            env)))
+      (define-variable!
+        'self
+        iterator-proc
+        (get-env iterator-proc))
+      (list iterator-proc (for-loop-initial exp)))))
+
+
+
+;; 4.10
+
+; allow infix notation for mathematical operators, e.g.
+; (1 + 2)
+; instead of
+; (+ 1 2)
+; Note that this is a very simple modification and will allow forms like
+; (1 + 2 3 4)
+
+(define (tagged-list? exp tag)
+  (if (pair? exp)
+      (if (symbol? (car exp))
+          (eq? (car exp) tag)
+          (if (number? (car exp))
+              (eq? (cadr exp) tag)
+              false))
+      false))
+
+(define (operator exp)
+  (if (number? (car exp))
+      (cadr exp)
+      (car exp)))
+
+(define (operands exp)
+  (if (number? (car exp))
+      (cons (car exp) (cddr exp))
+      (cdr exp)))
+
+
+;;
+
+(define (true? x) (not (eq? x false)))
+
+(define (false? x) (eq? x false))
+
+(define (make-procedure parameters body env)
+  (list 'procedure parameters body env))
+
+(define (compound-procedure? p)
+  (tagged-list? p 'procedure))
+
+(define (procedure-parameters p) (cadr p))
+
+(define (procedure-body p) (caddr p))
+
+(define (procedure-environment p) (cadddr p))
+
+(define (enclosing-environment env) (cdr env))
+
+(define (first-frame env) (car env))
+
+(define the-empty-environment '())
+
+(define (make-frame variables values)
+  (cons variables values))
+
+(define (frame-variables frame) (car frame))
+
+(define (frame-values frame) (cdr frame))
+
+(define (add-binding-to-frame! var val frame)
+  (set-car! frame (cons var (car frame)))
+  (set-cdr! frame (cons val (cdr frame))))

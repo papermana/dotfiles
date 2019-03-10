@@ -1,0 +1,6 @@
+PORT=3123
+FIREBASE_PROJECT_ID=img-uploader-7c44b
+FIREBASE_API_KEY=AIzaSyCghO8z4Ovt7PkGVcUg1SRjohsTC0ZwU-0
+FIREBASE_AUTH_DOMAIN=img-uploader-7c44b.firebaseapp.com
+FIREBASE_DATABASE_URL=https://img-uploader-7c44b.firebaseio.com
+FIREBASE_STORAGE_BUCKET=staging.img-uploader-7c44b.appspot.com

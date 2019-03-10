@@ -1,0 +1,28 @@
+;; only positive n
+(defn rotate
+  [n coll]
+  (let [[taken dropped] (split-at n coll)]
+    (concat dropped taken)))
+
+;; only negative n
+(defn rotate
+  [n coll]
+  (let [to-take (+ (count coll) n)
+        [taken dropped] (split-at to-take coll)]
+    (concat dropped taken)))
+
+;; n can be any number
+(defn rotate
+  [n coll]
+  (let [split-point (if (>= n 0) n (+ (count coll) n))
+        [taken dropped] (split-at split-point coll)]
+    (concat dropped taken)))
+
+(rotate -2 [1 2 3 4 5])
+
+
+;; version for 4clojure
+(fn [n coll]
+  (let [split-point (if (>= n 0) n (+ (count coll) n))
+        [taken dropped] (split-at split-point coll)]
+    (concat dropped taken)))

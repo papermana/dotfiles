@@ -1,0 +1,68 @@
+(ns Projects.clojure.infix-math-parser)
+
+(defn listify
+  [x]
+  (if-not (coll? x)
+    x
+    (->> x
+         (map listify)
+         (apply list))))
+
+(listify [1 2 3 [4 [5 6]]])
+(listify #{1 2 3 [4 5]})
+(listify {:foo 42 :bar [1 2 3]})
+
+(def precedence
+  '{+ 1, - 1, * 2, / 2})
+
+(defn math**
+  [current-operator result exp]
+  (if (= (count exp) 1)
+    (conj result (math-eval (first exp)))
+    (let [[value op & rest-exp] exp]
+      (cond
+        (= current-operator op)
+        (recur op
+               (conj result value)
+               rest-exp),
+        (= (precedence current-operator)
+           (precedence op))
+        (recur op
+               [op (conj result value)]
+               rest-exp),
+        (< (precedence current-operator)
+           (precedence op))
+        (recur op
+               result
+               (list (math* exp))),
+        (> (precedence current-operator)
+           (precedence op))
+        (recur op
+               [op (conj result value)]
+               rest-exp)))))
+
+(defn math-eval
+  [value]
+  (if (list? value)
+    (math** value)
+    value))
+
+(defn math*
+  [[value op & rest-exp]]
+  (math** op
+          [op (math-eval value)]
+          rest-exp))
+
+(defn math
+  [exp]
+  (->> (math* exp)
+       listify
+       eval))
+
+(math '[1 + 2])
+(math '[1 + 2 + 3])
+(math '[1 + 2 - 3])
+(math '[1 + 2 * 3])
+(math '[2 * 3 + 4 + 5 - 6 * 7])
+(math '[(0 + 1) * (2 + 3)])
+(math '[(1 + 2) * 3])

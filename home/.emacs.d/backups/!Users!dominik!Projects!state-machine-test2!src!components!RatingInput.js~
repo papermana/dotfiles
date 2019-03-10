@@ -1,0 +1,56 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Flex from 'styled-flex-component';
+
+import Text from './Text';
+import { colors } from '../constants';
+
+const RatingInputSegment = styled.button`
+  appearance: none;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  background-color: ${({ active }) => (
+    active ? colors.rating.good : colors.background.medium
+  )}
+`;
+
+const RatingInputWrapper = styled(Flex)`
+  border-radius: 25%;
+  overflow: hidden;
+`;
+
+const RatingInput = ({
+  className,
+  value,
+  onChange,
+}) => {
+  const segments = [0, 25, 50, 75].map(segmentValue => (
+    <RatingInputSegment
+      key={segmentValue}
+      onClick={onChange(segmentValue)}
+      active={value >= segmentValue}
+    >
+      <Text size="small">{segmentValue}</Text>
+    </RatingInputSegment>
+  ));
+
+  return (
+    <RatingInputWrapper className={className}>
+      {segments}
+    </RatingInputWrapper>
+  );
+}
+
+RatingInput.propTypes = {
+  className: PropTypes.string,
+  value: PropTypes.oneOf([0, 25, 50, 75]).isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+RatingInput.defaultProps = {
+  className: '',
+};
+
+export default RatingInput;

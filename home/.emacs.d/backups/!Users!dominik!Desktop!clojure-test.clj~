@@ -1,0 +1,39 @@
+(def input [2 1 3 4])
+(def input2 [:foo :bar :baz :qun
+             :foo :bar :baz :qun
+             :foo :bar :baz :qun
+             :foo :bar :baz :qun])
+
+(defn foo
+  ([numbers strings] (foo numbers strings '()))
+  ([numbers strings result]
+   (if (empty? numbers)
+     (reverse result)
+     (let [number (first numbers)]
+       (recur
+        (rest numbers)
+        (drop number strings)
+        (cons (take number strings)
+              result))))))
+
+(foo input input2)
+
+(defn bar
+  ([numbers strings] (bar numbers strings '()))
+  ([numbers strings result]
+   (if (empty? numbers)
+     (reverse result)
+     (let [num (first numbers)
+           [split rest-of-strings] (split-at num strings)]
+       (recur (rest numbers)
+              rest-of-strings
+              (cons split result))))))
+
+(bar input input2)
+
+(partition 2 input2)
+
+(partition-by #(= % :foo) input2)
+
+
+

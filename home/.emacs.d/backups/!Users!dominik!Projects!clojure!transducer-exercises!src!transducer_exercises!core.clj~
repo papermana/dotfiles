@@ -1,0 +1,50 @@
+(ns transducer-exercises.core
+  (:gen-class)
+  (:require [clojure.test :as test :refer [is]]))
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (println "Hello, World!"))
+
+; We use this function instead of `into` for debugging.
+; The reason is that this avoids using transient
+; structures which do not `print` nicely.
+(defn slow-into [to xf from]
+  (transduce xf conj to from))
+
+(defn nop
+  [xf]
+  (fn
+    ([] (xf))
+    ([result] (xf result))
+    ([result input] (xf result input))))
+
+(is (= [0 1 2] (into [] nop (range 3))))
+
+(defn pad-string
+  [string padding]
+  (apply str (take padding (repeat " ")) string))
+
+(is (= "   foo") (pad-string "foo" 3))
+
+([] (debug "" ""))
+([indent] (debug (pad-string "" indent) (pad-string "" indent)))
+([in out
+  (fn [xf]
+    (fn
+      ([] (xf))
+      ([result] (xf result))
+      ([result input]
+       (let [applied-result (xf result input)]
+         (println (str in " " input))
+         (println (str out " " applied-result))
+         applied-result))
+      ([indent in out] (debug (pad-string in indent) (pad-string out indent)))))])
+
+(slow-into []
+           (comp (debug)
+                 (debug 2)
+                 (debug 4 ">" "<")
+                 (debug "      >" "      <")) ; 6-spaces prefix
+           (range 3))

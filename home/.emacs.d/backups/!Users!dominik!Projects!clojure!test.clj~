@@ -1,0 +1,87 @@
+(defn partition-with
+  "Partition a coll using a vector of numbers as a template; each number signifies how many items there should be in a group"
+  ([template coll] (partition-with template coll '()))
+  ([template coll result]
+   (if (empty? template)
+     (reverse result)
+     (recur
+      (rest template)
+      (drop (first template) coll)
+      (cons (take (first template) coll)
+            result)))))
+
+(defn partition-with
+  "Partition a coll using a vector of numbers as a template; each number signifies how many items there should be in a group"
+  [template coll]
+  (loop [template template
+         coll coll
+         result '()]
+    (if (empty? template)
+     (reverse result)
+     (recur
+      (rest template)
+      (drop (first template) coll)
+      (cons (take (first template) coll)
+            result)))))
+
+(partition-with
+ [2 1 4 3]
+ [:foo :bar :baz :qun
+  :foo :bar :baz :qun
+  :foo :bar :baz :qun
+  :foo :bar :baz :qun])
+
+(partition
+ 2
+ [:foo :bar :baz :qun
+  :foo :bar :baz :qun
+  :foo :bar :baz :qun
+  :foo :bar :baz :qun])
+
+(partition-by
+ #(= % :foo)
+ [:foo :bar :baz :qun
+  :foo :bar :baz :qun
+  :foo :bar :baz :qun
+  :foo :bar :baz :qun])
+
+(replace [:foo :bar :baz :qun
+          :foo :bar :baz :qun
+          :foo :bar :baz :qun
+          :foo :bar :baz :qun]
+         [2 1 4 3])
+
+
+(defn map-seq
+  "Like map but applies f to an entire remaining seq at every step"
+  ([f seq] (map-seq f seq '()))
+  ([f seq result]
+   (if (empty? seq)
+     result
+     (recur f
+            (rest seq)
+            (cons (apply f seq) result)))))
+
+(defn map-seq
+  "Like map but applies f to an entire remaining seq at every step"
+  [f seq]
+  (loop [remaining seq, result '()]
+   (if (empty? remaining)
+     (reverse result)
+     (recur (rest remaining) (cons (apply f remaining)
+                                   result)))))
+
+(reverse (map-seq + (reverse [2 1 4 3])))
+
+(defn rmap-seq
+  "Like map but applies f to all the past elements of seq"
+  [f seq]
+  (loop [remaining seq, done [], result '()]
+    (if (empty? remaining)
+      (reverse result)
+      (recur (rest remaining)
+             (conj done (first remaining))
+             (cons (apply f (conj done (first remaining)))
+                   result)))))
+
+(rmap-seq + [2 1 4 3])

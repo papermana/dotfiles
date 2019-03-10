@@ -1,0 +1,24 @@
+;; taken from 128:
+(def suits-map {"S" :spade
+                "H" :heart
+                "D" :diamond
+                "C" :club})
+(def rank-map {"2" 0, "3" 1, "4" 2, "5" 3, "6" 4, "7" 5, "8" 6,
+               "9" 7, "T" 8, "J" 9, "Q" 10, "K" 11, "A" 12})
+(defn recognize-card [[suit rank]]
+  {:suit (suits-map (str suit))
+   :rank (rank-map (str rank))})
+
+(defn get-combinations
+  [coll]
+  (if (= (count coll) 1)
+    (first coll)
+    (map (fn [x]
+           (let [combinations (get-combinations (disj coll x))]
+             (if (coll? combinations)
+               (map (partial cons x) combinations)
+               (list x combinations))))
+         coll)))
+
+(get-combinations #{:a :b :c})
+

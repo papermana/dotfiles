@@ -1,0 +1,23 @@
+import React from 'react';
+import styled from 'styled-components';
+import Flex from 'styled-flex-component';
+
+const Input = styled.input.attrs({
+  type: 'search',
+})`
+  height: 100%;
+  width: 100%;
+`;
+
+const Button = styled.button`
+
+`;
+
+const Search = () => (
+  <Flex>
+    <Input />
+    <Button />
+  </Flex>
+);
+
+export default Search;

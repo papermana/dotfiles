@@ -1,0 +1,48 @@
+import React from 'react'
+import { connect } from 'stent/lib/react';
+import { Form, Field } from 'react-final-form';
+import { Link } from 'react-router-dom';
+
+const PokemonList = ({ list = [], error, fetch, isLoading }) => {
+  if (isLoading) {
+    return 'loading';
+  }
+
+  if (error) {
+    return 'There was some problem downloading data';
+  }
+
+  return (
+    <div>
+      <Form
+        onSubmit={fetch}
+        render={({ handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <Field name="generation" component="select">
+              <option />
+              <option value={1}>Gen I</option>
+              <option value={2}>Gen II</option>
+              <option value={3}>Gen III</option>
+              <option value={4}>Gen IV</option>
+              <option value={5}>Gen V</option>
+              <option value={6}>Gen VI</option>
+            </Field>
+            <button type="submit">Search</button>
+          </form>
+        )}
+      />
+      {list.map(({ name }) => <div key={name}>
+        <Link to={`/pokemon/${name}`}>{name}</Link>
+      </div>)}
+    </div>
+  );
+}
+
+export default connect(PokemonList)
+  .with('pokemonList')
+  .map(({ state, fetch, isLoading }) => ({
+    list: state.data,
+    error: state.error,
+    fetch,
+    isLoading: isLoading(),
+  }));

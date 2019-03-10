@@ -1,0 +1,13 @@
+(defn pack
+  [coll]
+  (loop [result []
+         remaining coll]
+    (if (empty? remaining)
+      result
+      (let [[taken dropped] (split-with (partial = (first remaining))
+                                        remaining)]
+        (recur (conj result taken)
+               dropped)))))
+
+(pack [1 1 2 1 1 3 3 4 3])
+

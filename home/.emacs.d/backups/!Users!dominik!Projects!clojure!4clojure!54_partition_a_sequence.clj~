@@ -1,0 +1,96 @@
+;; basic solution
+(defn my-partition
+  [n coll]
+  (loop [result ()
+         remaining coll]
+    (if (empty? remaining)
+      result
+      (let [[before after] (split-at n remaining)]
+        (if (< (count before) n)
+          result
+          (recur (concat result (list before)) after))))))
+
+(my-partition 3 (range 8))
+
+
+;; version for 4clojure
+(fn [n coll]
+  (loop [result ()
+         remaining coll]
+    (if (empty? remaining)
+      result
+      (let [[before after] (split-at n remaining)]
+        (if (< (count before) n)
+          result
+          (recur (concat result (list before)) after))))))
+
+
+;; more modular version, with the iteration generalized
+(defn iter
+  [f coll]
+  (loop [result ()
+         remaining coll]
+    (if (empty? remaining)
+      result
+      (let [[new-result new-remaining] (f result remaining)]
+        (recur new-result new-remaining)))))
+
+(defn my-partition-mod
+  [n coll]
+  (iter #(let [[before after] (split-at n %2)]
+           [(concat %1 (list before))
+            after])
+        coll))
+
+(my-partition-mod 3 (range 8))
+
+
+;; more sophisticated version of the modular approach
+(defn iter-2
+  [f coll]
+  (letfn [(callback
+            ([result] result)
+            ([result remaining] (f callback result remaining)))]
+    (trampoline f callback () coll)))
+
+(defn my-partition-mod-2
+  [n coll]
+  (iter-2 (fn [continue result remaining]
+            (let [[before after] (split-at n remaining)]
+              (if (< (count before) n)
+                (continue result)
+                (continue (concat result (list before))
+                          after))))
+          coll))
+
+(my-partition-2 3 (range 10))
+
+
+(defmacro iter-m
+  [coll [result-bind remaining-bind] & body]
+  `(loop [~result-bind ()
+          ~remaining-bind ~coll]
+     (if (empty? ~remaining-bind)
+       ~result-bind
+       ~@body)))
+
+(macroexpand '(iter-m [1 2 3 4 5]
+                      [result remaining]
+                      (recur (cons 1 result)
+                             (rest remaining))))
+
+(iter-m [1 2 3 4 5]
+        [result remaining]
+        (recur (cons 1 result)
+               (rest remaining)))
+
+
+(fn [n coll]
+  (loop [result ()
+         remaining coll]
+    (if (empty? remaining)
+      result
+      (let [[before after] (split-at n remaining)]
+        (if (< (count before) n)
+          result
+          (recur (concat result (list before)) after))))))

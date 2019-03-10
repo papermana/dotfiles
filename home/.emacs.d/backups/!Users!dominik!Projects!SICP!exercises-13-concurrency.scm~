@@ -1,0 +1,77 @@
+(define (make-account initial-balance)
+  (let ((balance initial-balance))
+    (define (withdraw amount)
+      (if (>= balance amount)
+          (begin
+            (set! balance (- balance amount))
+            balance)
+          "Insufficient funds"))
+    (define (deposit amount)
+      (begin
+        (set! balance (+ balance amount))
+        balance))
+    (define (show) balance)
+    (lambda (m)
+      (cond ((eq? m 'withdraw) withdraw)
+            ((eq? m 'deposit) deposit)
+            ((eq? m 'show) show)))))
+
+
+;; 3.38
+
+(define joint-account (make-account 100))
+((joint-account 'deposit) 10)
+((joint-account 'withdraw) 20)
+((joint-account 'withdraw) (let ((balance ((joint-account 'show))))
+                             (/ balance 2)))
+
+; (/ (- (+ 100 10) 20) 2) -> 45
+; (/ (+ (- 100 20) 10) 2) -> 45
+; (+ (- (/ 100 2) 20) 10) -> 40
+; (- (+ (/ 100 2) 10) 20) -> 40
+; (- (/ (+ 100 10) 2) 20) -> 35
+; (+ (/ (- 100 20) 2) 10) -> 50
+
+
+
+;;
+
+(define (make-account balance)
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance (- balance amount))
+               balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (let ((protected (make-serializer)))
+    (lambda (m)
+      (cond ((eq? m 'withdraw) (protected withdraw))
+            ((eq? m 'deposit) (protected deposit))
+            ((eq? m 'balance) balance)
+            (else (error "Unknown request: MAKE-ACCOUNT" m))))))
+
+
+;; 3.39
+
+; Still only 101 and 121.
+; Correction: and also 100.
+
+
+;; 3.40
+
+;; a)
+; 1000000: P1 first, then P2
+; 1000000: P2 first, then P1
+; 100: P1 reads, P2 reads and writes, P1 writes
+; 1000: P2 reads, P1 reads and writes, P2 writes
+; 10000: P1 reads first x, P2 reads and writes, P1 reads second x and writes
+; 100000: P2 reads first x, P1 reads and writes, P2 reads second and third x
+
+;; b)
+; Only the result of 1,000,000 remains
+
+
+;; 3.41
+; Bitdiddle's solution would be an improvement if it provided us with a way to specify the order of operations (e.g. balance can be read only at the end). As it is, even the protected balance procedure can be called at any point, before or after any other operation; thus we haven't gained anything. And as balance doesn't have any side effects, we don't have to be concerned about it interfering with other operations.

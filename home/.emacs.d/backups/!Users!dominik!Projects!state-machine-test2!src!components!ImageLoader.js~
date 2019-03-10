@@ -1,0 +1,9 @@
+import styled from 'styled-components';
+
+const ImageLoader = styled.div.attrs({
+  children: props => <img {...props} />,
+})`
+  background-color: 'grey';
+`;
+
+export default ImageLoader;

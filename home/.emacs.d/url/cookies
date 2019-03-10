@@ -1,0 +1,18 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '((".google.pl"
+  [url-cookie "NID" "100=mNtEvNte8iqZEDWT9sqYOVk67DLRatduKs6ZdFfClE_tLfJd7PHqVTyahxAasCIKXFI6yaJuolh__-y_ai_FObkQ3lzPPFKHvYZpPgzXuW2PHv9jx3KgpL9rmHwi7cEc" "30-Sep-2017 19:13:31.00 GMT" "/" ".google.pl" nil]
+  [url-cookie "HttpOnly" nil "30-Sep-2017 19:13:31.00 GMT" "/" ".google.pl" nil])
+ (".netguru.co"
+  [url-cookie "__cfduid" "df8c9ad8e78d1978c62b5225132edaa371490987595" "31 Mar 18 19:13:15 [GMT]" "/" ".netguru.co" nil]
+  [url-cookie "HttpOnly" nil "31 Mar 18 19:13:15 [GMT]" "/" ".netguru.co" nil]))
+)
+(setq url-cookie-secure-storage
+ 'nil)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:

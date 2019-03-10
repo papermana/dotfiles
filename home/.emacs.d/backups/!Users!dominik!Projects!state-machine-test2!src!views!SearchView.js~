@@ -1,0 +1,15 @@
+import React from 'react';
+import Flex from 'styled-flex-component';
+
+import SearchContainer from '../containers/SearchContainer';
+import MoviesGallery from '../components/MoviesGallery';
+
+const SearchView = () => (
+  <SearchContainer render={data => (
+    <Flex justifyCenter>
+      <MoviesGallery data={data} />
+    </Flex>
+  )} />
+);
+
+export default SearchView;

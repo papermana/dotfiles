@@ -1,0 +1,34 @@
+(defn anagrams?
+  "Returns true if the two words provided are anagrams of each other."
+  [word-a word-b]
+  (and (= (count word-a) (count word-b))
+       (= (frequencies word-a) (frequencies word-b))))
+
+(defn find-all-anagrams
+  "Returns all words from a coll that are anagrams for a given word"
+  [word coll]
+  (set (filter (partial anagrams? word) coll)))
+
+(defn anagram-finder
+  "Takes a coll of words and returns a set of sets of words, where each set of words contains all of the given words that are anagrams of each other"
+  [words]
+  (->> words
+       (map #(find-all-anagrams % words))
+       (filter #(> (count %) 1))
+       set))
+
+(anagram-finder ["foo" "ofo" "oof" "baz" "bar" "zab"])
+(anagram-finder ["meat" "mat" "team" "mate" "eat"])
+(anagram-finder ["veer" "lake" "item" "kale" "mite" "ever"])
+
+(fn
+  [words]
+  (letfn [(anagrams?  [word-a word-b]
+            (and (= (count word-a) (count word-b))
+                 (= (frequencies word-a) (frequencies word-b))))
+          (find-all-anagrams [word coll]
+            (set (filter (partial anagrams? word) coll)))]
+    (->> words
+       (map #(find-all-anagrams % words))
+       (filter #(> (count %) 1))
+       set)))
