@@ -66,7 +66,7 @@
    "com.googlecode.iterm2.plist"
    "PrefsCustomFolder"
    "-string"
-   "$HOME/iterm2_profile")
+   (get-absolute-path (str (:home env) "/iterm2_profile"))
   (sh
    "defaults"
    "write"
