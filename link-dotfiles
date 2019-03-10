@@ -62,10 +62,18 @@
   (println)
   (sh
    "defaults"
-   "write com.googlecode.iterm2.plist PrefsCustomFolder -string \"$HOME/iterm2_profile\"")
+   "write"
+   "com.googlecode.iterm2.plist"
+   "PrefsCustomFolder"
+   "-string"
+   "$HOME/iterm2_profile")
   (sh
    "defaults"
-   "write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true"))
+   "write"
+   "com.googlecode.iterm2.plist"
+   "LoadPrefsFromCustomFolder"
+   "-bool"
+   "true"))
 
 (defn install-brew-cask-packages
   []
