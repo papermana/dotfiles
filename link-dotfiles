@@ -8,12 +8,12 @@
 (defn symlink
   [file target]
   (let [file-path (if (string? file) file (:path file))]
-    (sh "ln -svf" file-path target)))
+    (sh "ln" "-svf" file-path target)))
 
 (defn configure-zsh
   []
-  (let [zsh-path (sh "which zsh")]
-    (sh "chsh -s" zsh-path)))
+  (let [zsh-path (sh "which" "zsh")]
+    (sh "chsh" "-s" zsh-path)))
 
 (defn install-brew-packages
   []
@@ -37,15 +37,17 @@
                   "zsh"
                   "zsh-completions"]]
     (for [package packages]
-      (sh "brew install" package)))
+      (sh "brew" "install" package)))
   (configure-zsh))
 
 (defn configure-iterm
   []
   (sh
-   "defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string \"$HOME/iterm2_profile\"")
+   "defaults"
+   "write com.googlecode.iterm2.plist PrefsCustomFolder -string \"$HOME/iterm2_profile\"")
   (sh
-   "defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true"))
+   "defaults"
+   "write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true"))
 
 (defn install-brew-cask-packages
   []
@@ -57,7 +59,7 @@
                   "visual-studio-code"
                   "whatsapp"]]
     (for [package packages]
-      (sh "brew cask install" package)))
+      (sh "brew" "cask install" package)))
   (configure-iterm))
 
 (defn link-home-files
@@ -99,7 +101,7 @@
                          "yzhang.markdown-all-in-one"
                          "zengxingxin.sort-js-object-keys"]]
     (for [extension extensions-list]
-      (sh "code --install-extension" extension))))
+      (sh "code" "--install-extension" extension))))
 
 (defn -main
   []
