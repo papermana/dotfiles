@@ -12,8 +12,7 @@
 
 (defn configure-zsh
   []
-  (let [zsh-path (:out (sh "which" "zsh"))]
-    (sh "chsh" "-s" zsh-path)))
+  (sh "chsh" "-s" "/bin/zsh"))
 
 (defn install-brew-packages
   []
