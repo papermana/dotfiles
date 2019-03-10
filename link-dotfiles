@@ -1,10 +1,9 @@
 #!/usr/bin/env plk
 
-(ns link-dotfiles.core
-  (:require
-   [planck.environ :refer [env]]
-   [planck.shell :refer [sh]]
-   [planck.io :as io]))
+(require
+ '[planck.environ :refer [env]]
+ '[planck.shell :refer [sh]]
+ '[planck.io :as io])
 
 (defn symlink
   [file target]
@@ -109,3 +108,5 @@
   (link-home-files)
   (link-vscode-files)
   (install-vscode-extensions))
+
+(set! *main-cli-fn* -main)
