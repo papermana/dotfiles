@@ -1,0 +1,77 @@
+// Place your settings in this file to overwrite the default settings
+{
+  // Cosmetics:
+  "editor.fontFamily": "Input",
+  "editor.fontSize": 13,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 80,
+  "rewrap.wrappingColumn": 80,
+  "workbench.colorTheme": "Tomorrow Night",
+  "workbench.fontAliasing": "antialiased",
+  "editor.rulers": [100],
+  "workbench.colorCustomizations": {
+    "editor.selectionHighlightBorder": "#8f8f8f"
+  },
+
+  // Behavior:
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.trimAutoWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "workbench.quickOpen.closeOnFocusLost": false,
+  "files.associations": {
+    "*.js": "javascriptreact"
+  },
+
+  // Keybindings:
+  "atomKeymap.promptV3Features": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "emmet.triggerExpansionOnTab": true,
+
+  // Turn crap off:
+  "editor.scrollBeyondLastLine": false,
+  "editor.lightbulb.enabled": false,
+  "editor.minimap.enabled": false,
+  "editor.renderIndentGuides": false,
+  "editor.roundedSelection": false,
+  "git.enabled": false,
+  "javascript.validate.enable": false,
+  "javascript.format.enable": false,
+  "json.format.enable": false,
+  "explorer.openEditors.visible": 0,
+
+  // Expansions config:
+  "indentRainbow.colors": [
+    "rgba(110,219,7,0.04)",
+    "rgba(29,219,58,0.04)",
+    "rgba(24,188,213,0.04)",
+    "rgba(14,118,219,0.04)",
+    "rgba(1,35,217,0.04)",
+    "rgba(82,2,224,0.04)",
+    "rgba(177,0,225,0.04)",
+    "rgba(215,0,218,0.04)",
+    "rgba(206,2,73,0.04)",
+    "rgba(206,2,73,0.05)",
+    "rgba(206,2,73,0.07)",
+    "rgba(206,2,73,0.1)",
+    "rgba(206,2,73,0.15)"
+  ],
+  "prettier.eslintIntegration": true,
+  "prettier.parser": "babylon",
+  "extensions.autoUpdate": false,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "window.zoomLevel": 0,
+  "csscomb.formatOnSave": false,
+  "breadcrumbs.enabled": true,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "vetur.format.defaultFormatter.html": "prettyhtml",
+  "markdown.extension.italic.indicator": "_",
+  "markdown.extension.toc.githubCompatibility": true,
+  "markdown.extension.toc.levels": "2..6",
+  "prettier.stylelintIntegration": true,
+  "sync.gist": "16c55651755d40c1b3906897dfbcaff8",
+}
