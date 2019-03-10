@@ -5,10 +5,22 @@
  '[planck.shell :refer [sh]]
  '[planck.io :as io])
 
+(defn remove-trailing-newline
+  [string]
+  (re-find #"\S+" string))
+
+(defn get-absolute-path
+  [relative-path]
+  (let [current-dir (-> (sh "pwd")
+                        :out
+                        remove-trailing-newline)]
+    (str current-dir "/" relative-path)))
+
 (defn symlink
   [file target]
-  (let [file-path (if (string? file) file (:path file))]
-    (sh "ln" "-svf" file-path target)))
+  (let [file-path (if (string? file) file (:path file))
+        absolute-file-path (get-absolute-path file-path)]
+    (sh "ln" "-svf" absolute-file-path target)))
 
 (defn configure-zsh
   []
