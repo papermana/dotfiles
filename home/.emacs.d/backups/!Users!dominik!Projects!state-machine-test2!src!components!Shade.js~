@@ -1,7 +1,0 @@
-import styled from 'styled-components';
-
-const Shade = styled.div`
-  box-shadow: inset -60px 0 0 5px rgba(0,0,0,0.1);
-`;
-
-export default Shade;

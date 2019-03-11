@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-curl -L https://github.com/netguru/ng-node-starter-app/archive/master.zip > tmp
-unzip tmp
-mv ng-node-starter-app-master/* .
-rm tmp

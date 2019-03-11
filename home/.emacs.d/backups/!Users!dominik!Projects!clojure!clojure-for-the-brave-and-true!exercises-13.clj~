@@ -1,4 +1,0 @@
-(ns were-creatures)
-
-(defmulti full-moon-behavior
-  (fn [were-creature] (:were-type were-creature)))

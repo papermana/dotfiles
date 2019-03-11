@@ -1,3 +1,0 @@
-(ns ng-starter-app-cli-cljs.core)
-
-(println "Hello world")

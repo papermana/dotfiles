@@ -1,5 +1,0 @@
-const HeaderContainer = ({ render }) => render({
-  imageUrl: 'https://image.tmdb.org/t/p/w1280/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg',
-});
-
-export default HeaderContainer;

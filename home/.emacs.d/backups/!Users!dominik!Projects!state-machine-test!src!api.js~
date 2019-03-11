@@ -1,5 +1,0 @@
-export const getSpecies = (page) => fetch(`https://pokeapi.co/api/v2/pokemon-species/?offset=${20 * page}`)
-  .then(response => response.json().results);
-
-export const getSpeciesPerGeneration = (generation) => fetch(`https://pokeapi.co/api/v2/generation/${generation}`)
-  .then(response => response.json().pokemon_species);

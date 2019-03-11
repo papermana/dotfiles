@@ -1,6 +1,0 @@
-export const obj = {
-  foo: 'foo',
-  bar: 'bar',
-};
-
-export const f = input => obj[input];
