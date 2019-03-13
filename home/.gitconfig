@@ -25,8 +25,10 @@
 	ca = commit --amend
 	ri = rebase -i
 	rc = rebase --continue
-	cpc = cherry-pick --continue
 	cp = cherry-pick
+	cpc = cherry-pick --continue
+	m = merge
+	mc = merge --continue
 	rl = !git reset --soft HEAD~1 && git reset HEAD
 	update-times = rebase --force-rebase --ignore-date
 	po = !git push -u origin \"$(git rev-parse --abbrev-ref HEAD)\"
