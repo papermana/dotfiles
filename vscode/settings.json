@@ -10,9 +10,7 @@
   "workbench.colorTheme": "Tomorrow Night",
   "workbench.fontAliasing": "antialiased",
   "editor.rulers": [100],
-  "workbench.colorCustomizations": {
-    "editor.selectionHighlightBorder": "#8f8f8f"
-  },
+  "workbench.colorCustomizations": {},
 
   // Behavior:
   "editor.formatOnPaste": false,
