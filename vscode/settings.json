@@ -72,6 +72,5 @@
   "markdown.extension.italic.indicator": "_",
   "markdown.extension.toc.githubCompatibility": true,
   "markdown.extension.toc.levels": "2..6",
-  "prettier.stylelintIntegration": true,
-  "sync.gist": "16c55651755d40c1b3906897dfbcaff8",
+  "prettier.stylelintIntegration": true
 }
