@@ -115,7 +115,6 @@
 (defn install-vscode-extensions
   []
   (let [extensions-list ["adamwalzer.string-converter"
-                         "crisward.cjsx"
                          "dbaeumer.vscode-eslint"
                          "dbankier.vscode-quick-select"
                          "esbenp.prettier-vscode"
