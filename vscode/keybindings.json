@@ -31,5 +31,13 @@
   {
     "key": "cmd+k k",
     "command": "workbench.action.minimizeOtherEditors"
+  },
+  {
+    "key": "ctrl+down",
+    "command": "spaceBlockJumper.moveDown"
+  },
+  {
+    "key": "ctrl+up",
+    "command": "spaceBlockJumper.moveUp"
   }
 ]

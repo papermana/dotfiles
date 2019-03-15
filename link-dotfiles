@@ -118,6 +118,7 @@
                          "dbaeumer.vscode-eslint"
                          "dbankier.vscode-quick-select"
                          "esbenp.prettier-vscode"
+                         "jmfirth.vsc-space-block-jumper"
                          "jpoissonnier.vscode-styled-components"
                          "kumar-harsh.graphql-for-vscode"
                          "mikestead.dotenv"
