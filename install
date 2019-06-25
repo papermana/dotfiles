@@ -11,9 +11,16 @@ if [[ $(uname) == 'Linux' ]]; then
 		exit 1
 	fi
 
+	# Install Homebrew for Linux
 	sudo apt install build-essential curl file git
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
+	# Further config for Homebrew as recommended
+	echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.profile
+	eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+	brew install gcc
 elif [[ $(uname) == 'Darwin' ]]; then
+	# Install Homebrew
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
