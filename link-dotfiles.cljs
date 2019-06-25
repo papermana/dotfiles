@@ -5,6 +5,8 @@
  '[planck.shell :refer [sh]]
  '[planck.io :as io])
 
+(def platform (sh "uname"))
+
 (defn remove-trailing-newline
   [string]
   (re-find #"\S+" string))
@@ -92,6 +94,28 @@
     (println))
   (configure-iterm))
 
+(defn install-snap-apps
+  []
+  (let [packages [{:name "code", :classic? true} ; Visual Studio Code
+                  {:name "emacs", :classic? true}
+                  {:name "postman", :classic? false}]]
+    (println "Installing snap apps:")
+    (doseq [package packages]
+      (println (str "Installing " (:name package) "."))
+      (if (:classic? package)
+        (sh "sudo" "snap" "install" (:name package) "--classic")
+        (sh "sudo" "snap" "install" (:name package))))
+    (println)))
+
+(defn install-linux-apps
+  []
+  (let [packages ["default-jdk"]]
+    (println "Installing Linux apps:")
+    (doseq [package packages]
+      (println (str "Installing " package "."))
+      (sh "sudo" "apt" "install" package))
+    (println)))
+
 (defn link-home-files
   []
   (let [files (io/list-files "./home")]
@@ -104,8 +128,13 @@
 (defn link-vscode-files
   []
   (let [settings-dir
-        (str (:home env)
-             "/Library/Application Support/Code/User/")]
+        (case platform
+              "Darwin" (str
+                        (:home env)
+                        "/Library/Application Support/Code/User/")
+              "Linux" (str
+                       (:home env)
+                       "/.config/Code/User/"))]
     (println "Linking VSCode settings and keybindings.")
     (println)
     (symlink "./vscode/settings.json"
@@ -143,23 +172,43 @@
 
 (defn copy-fonts
   []
-  (let [fonts (io/list-files "./fonts")]
+  (let [fonts (io/list-files "./fonts")
+        target-dir (case platform
+                         "Darwin" (str (:home env) "/Library/Fonts")
+                         "Linux" "/usr/share/fonts/truetype")]
     (println "Copying fonts:")
     (doseq [font fonts]
       (println (str "Copying " (io/file-name font) "."))
-      (sh "cp" (:path font) (str (:home env) "/Library/Fonts")))
+      (sh "cp" (:path font) target-dir))
     (println)))
 
-(defn -main
+(defn macos-main
   []
-  (println "Installing packages, linking dotfiles, and setting up configs.")
-  (println)
   (install-brew-packages)
   (install-brew-cask-packages)
   (link-home-files)
   (link-vscode-files)
   (install-vscode-extensions)
-  (copy-fonts)
+  (copy-fonts))
+
+(defn linux-main
+  []
+  (install-brew-packages)
+  (install-snap-apps)
+  (install-linux-apps)
+  (link-home-files)
+  (link-vscode-files)
+  (install-vscode-extensions)
+  (copy-fonts))
+
+
+(defn -main
+  []
+  (println "Installing packages, linking dotfiles, and setting up configs.")
+  (println)
+  (case platform
+        "Darwin" (macos-main)
+        "Linux" (linux-main))
   (println "And all done!"))
 
 (set! *main-cli-fn* -main)

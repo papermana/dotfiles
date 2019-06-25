@@ -2,7 +2,20 @@
 
 # Bootstrapping
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [[ $(uname) == 'Linux' ]]; then
+	if [[ $(which apt) == '' ]] then
+		echo 'Must be an Ubuntu-based distribution: missing apt'
+		exit 1
+	elif [[ $(which snap) == '']] then
+		echo 'Must support snap apps: missing snap/snapd'
+		exit 1
+	fi
+
+	sudo apt install build-essential curl file git
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+elif [[ $(uname) == 'Darwin' ]]; then
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 brew install planck
 
