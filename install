@@ -6,4 +6,4 @@
 
 brew install planck
 
-planck ./link-dotfiles
+planck ./link-dotfiles.cljs
