@@ -5,7 +5,14 @@
  '[planck.shell :refer [sh]]
  '[planck.io :as io])
 
-(def platform (sh "uname"))
+(defn strip-trailing-newline
+  [string]
+  (let [[_ match] (re-find #"(\w+)\n" string)]
+    match))
+
+(def platform (-> (sh "uname")
+                  :out
+                  strip-trailing-newline))
 
 (defn remove-trailing-newline
   [string]
