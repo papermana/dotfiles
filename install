@@ -3,10 +3,10 @@
 # Bootstrapping
 
 if [[ $(uname) == 'Linux' ]]; then
-	if [[ $(which apt) == '' ]] then
+	if [[ $(which apt) == '' ]]; then
 		echo 'Must be an Ubuntu-based distribution: missing apt'
 		exit 1
-	elif [[ $(which snap) == '']] then
+	elif [[ $(which snap) == '' ]]; then
 		echo 'Must support snap apps: missing snap/snapd'
 		exit 1
 	fi
