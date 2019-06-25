@@ -19,11 +19,16 @@ if [[ $(uname) == 'Linux' ]]; then
 	echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.profile
 	eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 	brew install gcc
+
+	# Install planck via apt, rather than planck, because of some errors I've
+	# been getting
+	sudo add-apt-repository ppa:mfikes/planck
+	sudo apt update
+	sudo apt install planck
 elif [[ $(uname) == 'Darwin' ]]; then
 	# Install Homebrew
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	brew install planck
 fi
-
-brew install planck
 
 planck ./link-dotfiles.cljs
