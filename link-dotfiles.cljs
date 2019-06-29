@@ -37,13 +37,13 @@
   (println "Setting ZSH as default shell.")
   (println)
   (case platform
-        "Darwin" (sh "chsh" "-s" "/bin/zsh")
-        "Linux" (do
-                 (sh "sudo" "cp" "/etc/pam.d/chsh" "/etc/pam.d/chsh.bak")
-                 (sh "sudo" "sed" "s/required/sufficient/g" "-i" "/etc/pam.d/chsh")
-                 (sh "chsh" "-s" "/bin/zsh")
-                 (sh "sudo" "rm" "/etc/pam.d/chsh")
-                 (sh "sudo" "mv" "/etc/pam.d/chsh.bak" "/etc/pam.d/chsh"))))
+    "Darwin" (sh "chsh" "-s" "/bin/zsh")
+    "Linux" (do
+              (sh "sudo" "cp" "/etc/pam.d/chsh" "/etc/pam.d/chsh.bak")
+              (sh "sudo" "sed" "s/required/sufficient/g" "-i" "/etc/pam.d/chsh")
+              (sh "chsh" "-s" "/bin/zsh")
+              (sh "sudo" "rm" "/etc/pam.d/chsh")
+              (sh "sudo" "mv" "/etc/pam.d/chsh.bak" "/etc/pam.d/chsh"))))
 
 (defn install-brew-packages
   []
@@ -201,12 +201,12 @@
   []
   (let [settings-dir
         (case platform
-              "Darwin" (str
-                        (:home env)
-                        "/Library/Application Support/Code/User/")
-              "Linux" (str
-                       (:home env)
-                       "/.config/Code/User/"))]
+          "Darwin" (str
+                    (:home env)
+                    "/Library/Application Support/Code/User/")
+          "Linux" (str
+                   (:home env)
+                   "/.config/Code/User/"))]
     (println "Linking VSCode settings and keybindings.")
     (println)
     (symlink "./vscode/settings.json"
@@ -246,14 +246,14 @@
   []
   (let [fonts (io/list-files "./fonts")
         target-dir (case platform
-                         "Darwin" (str (:home env) "/Library/Fonts")
-                         "Linux" "/usr/share/fonts/truetype")]
+                     "Darwin" (str (:home env) "/Library/Fonts")
+                     "Linux" "/usr/share/fonts/truetype")]
     (println "Copying fonts:")
     (doseq [font fonts]
       (println (str "Copying " (io/file-name font) "."))
       (case platform
-            "Darwin" (sh "cp" (:path font) target-dir)
-            "Linux" (sh "sudo" "cp" (:path font) target-dir)))
+        "Darwin" (sh "cp" (:path font) target-dir)
+        "Linux" (sh "sudo" "cp" (:path font) target-dir)))
     (println)))
 
 (defn macos-main
@@ -280,8 +280,8 @@
   (println "Installing packages, linking dotfiles, and setting up configs.")
   (println)
   (case platform
-        "Darwin" (macos-main)
-        "Linux" (linux-main))
+    "Darwin" (macos-main)
+    "Linux" (linux-main))
   (println "And all done!"))
 
 (set! *main-cli-fn* -main)
