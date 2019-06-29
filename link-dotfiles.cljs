@@ -1,6 +1,7 @@
 #!/usr/bin/env plk
 
 (require
+ '[planck.core :as core]
  '[planck.environ :refer [env]]
  '[planck.shell :refer [sh]]
  '[planck.io :as io])
@@ -73,6 +74,72 @@
     (println))
   (configure-zsh))
 
+(defn linux-install-diff-so-fancy
+  []
+  (println "Installing diff-so-fancy.")
+  (sh "sudo" "sh" "-c" "curl 'https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy' > /usr/local/bin/diff-so-fancy")
+  (sh "sudo" "chmod" "+x" "/usr/locla/bin/diff-so-fancy")
+  (println))
+
+(defn linux-install-lumo
+  []
+  (println "Installing lumo.")
+  (sh "yarn" "global" "add" "lumo-cljs")
+  (println))
+
+(defn linux-install-n
+  []
+  (println "Installing n.")
+  (sh "yarn" "global" "add" "n")
+  (println))
+
+(defn linux-install-watchman
+  []
+  (when (empty? (:out (sh "which" "watchman")))
+    (println "Building watchman from source.")
+    (println "May take a while.")
+    (->> (sh "curl" "https://gist.githubusercontent.com/papermana/d8d617d558efb51c05b48af58d00ead2/raw/51ce71874e4c7a45a11fd679746c728bea9997de/install-watchman-ubuntu.sh")
+         :out
+         (sh "bash" :in))
+    (println)))
+
+(defn linux-install-zsh-completions
+  []
+  (println "Installing zsh-completions.")
+  (sh "wget" "https://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/xUbuntu_18.04/amd64/zsh-completions_0.30.0+1.1_amd64.deb" "-O" "/tmp/zsh-completions")
+  (sh "sudo" "dpkg" "-i" "/tmp/zsh-completions"))
+
+(defn install-linux-packages
+  []
+  (let [packages ["clojure"
+                  "default-jdk"
+                  "git"
+                  "gnupg"
+                  "imagemagick"
+                  "leiningen"
+                  "lynx"
+                  "mg"
+                  "mit-scheme"
+                  "optipng"
+                  "ruby"
+                  "tree"
+                  "unrar"
+                  "wget"
+                  "yarn"
+                  "zsh"]]
+    (println "Installing packages via apt:")
+    (doseq [package packages]
+      (println (str "Installing " package "."))
+      (sh "sudo" "apt" "install" "--yes" package))
+    (println))
+  (linux-install-diff-so-fancy)
+  (linux-install-lumo)
+  (linux-install-n)
+  (linux-install-watchman)
+  (linux-install-zsh-completions)
+  (println)
+  (configure-zsh))
+
 (defn configure-iterm
   []
   (println "Making iterm2 use synced settings.")
@@ -119,15 +186,6 @@
       (if (:classic? package)
         (sh "sudo" "snap" "install" (:name package) "--classic")
         (sh "sudo" "snap" "install" (:name package))))
-    (println)))
-
-(defn install-linux-apps
-  []
-  (let [packages ["default-jdk"]]
-    (println "Installing Linux apps:")
-    (doseq [package packages]
-      (println (str "Installing " package "."))
-      (sh "sudo" "apt" "install" package))
     (println)))
 
 (defn link-home-files
@@ -207,9 +265,8 @@
 
 (defn linux-main
   []
-  (install-brew-packages)
+  (install-linux-packages)
   (install-snap-apps)
-  (install-linux-apps)
   (link-home-files)
   (link-vscode-files)
   (install-vscode-extensions)
