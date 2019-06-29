@@ -251,7 +251,9 @@
     (println "Copying fonts:")
     (doseq [font fonts]
       (println (str "Copying " (io/file-name font) "."))
-      (sh "cp" (:path font) target-dir))
+      (case platform
+            "Darwin" (sh "cp" (:path font) target-dir)
+            "Linux" (sh "sudo" "cp" (:path font) target-dir)))
     (println)))
 
 (defn macos-main
