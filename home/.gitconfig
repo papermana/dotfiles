@@ -1,7 +1,7 @@
 [user]
 	name = Dominik Rowicki
 	email = dominik.rowicki@netguru.co
-	signingkey = 4DA1E37EA2F0F0D6
+	signingkey = 4C73F046E5A08EED33407742CAE1A7C9D5D31DC5
 [core]
 	editor = mg
 	autocrlf = input
