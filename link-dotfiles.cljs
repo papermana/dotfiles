@@ -36,14 +36,13 @@
   []
   (println "Setting ZSH as default shell.")
   (println)
-  (case platform
-    "Darwin" (sh "chsh" "-s" "/bin/zsh")
-    "Linux" (do
-              (sh "sudo" "cp" "/etc/pam.d/chsh" "/etc/pam.d/chsh.bak")
-              (sh "sudo" "sed" "s/required/sufficient/g" "-i" "/etc/pam.d/chsh")
-              (sh "chsh" "-s" "/bin/zsh")
-              (sh "sudo" "rm" "/etc/pam.d/chsh")
-              (sh "sudo" "mv" "/etc/pam.d/chsh.bak" "/etc/pam.d/chsh"))))
+  (when (= platform "Linux")
+    (sh "sudo" "cp" "/etc/pam.d/chsh" "/etc/pam.d/chsh.bak")
+    (sh "sudo" "sed" "s/required/sufficient/g" "-i" "/etc/pam.d/chsh"))
+  (sh "chsh" "-s" "/bin/zsh")
+  (when (= platform "Linux")
+    (sh "sudo" "rm" "/etc/pam.d/chsh")
+    (sh "sudo" "mv" "/etc/pam.d/chsh.bak" "/etc/pam.d/chsh")))
 
 (defn install-brew-packages
   []
