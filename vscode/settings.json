@@ -70,5 +70,8 @@
   "markdown.extension.italic.indicator": "_",
   "markdown.extension.toc.githubCompatibility": true,
   "markdown.extension.toc.levels": "2..6",
-  "prettier.stylelintIntegration": true
+  "prettier.stylelintIntegration": true,
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  }
 }
