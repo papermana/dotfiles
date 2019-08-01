@@ -44,6 +44,12 @@
     (sh "sudo" "rm" "/etc/pam.d/chsh")
     (sh "sudo" "mv" "/etc/pam.d/chsh.bak" "/etc/pam.d/chsh")))
 
+(defn install-slimzsh
+  []
+  (println "Installing Slim ZSH")
+  (println)
+  (sh "git" "clone" "--recursive" "https://github.com/changs/slimzsh.git" "~/.slimzsh"))
+
 (defn install-brew-packages
   []
   (let [packages ["clojure"
@@ -71,6 +77,7 @@
       (println (str "Installing " package "."))
       (sh "brew" "install" package))
     (println))
+  (install-slimzsh)
   (configure-zsh))
 
 (defn linux-install-diff-so-fancy
@@ -137,6 +144,7 @@
   (linux-install-watchman)
   (linux-install-zsh-completions)
   (println)
+  (install-slimzsh)
   (configure-zsh))
 
 (defn configure-iterm
