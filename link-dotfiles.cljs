@@ -170,7 +170,7 @@
     (println "Installing apps from Homebrew cask:")
     (doseq [package packages]
       (println (str "Installing " package "."))
-      (sh "brew" "cask install" package))
+      (sh "brew" "cask" "install" package))
     (println))
   (configure-iterm))
 
