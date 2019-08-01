@@ -13,6 +13,9 @@ source "$HOME/.slimzsh/slim.zsh"
 
 export LANG=en_US.UTF-8
 
+# Fixes Git not working with GPG
+export GPG_TTY=$(tty)
+
 alias git='nocorrect git'
 alias npm='nocorrect npm'
 alias emacs='/usr/local/Cellar/emacs/25.1/bin/emacs-25.1 -nw'
