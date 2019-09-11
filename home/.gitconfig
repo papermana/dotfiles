@@ -33,8 +33,6 @@
 	update-times = rebase --force-rebase --ignore-date
 	po = !git push -u origin \"$(git rev-parse --abbrev-ref HEAD)\"
 	initial-commit = commit --allow-empty -m \"Initial commit\"
-	gaysect = bisect
-	straightsect = bisect
 
 [merge]
 	conflictStyle = diff3
