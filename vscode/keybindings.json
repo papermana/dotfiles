@@ -39,5 +39,9 @@
   {
     "key": "ctrl+up",
     "command": "spaceBlockJumper.moveUp"
+  },
+  {
+    "key": "cmd+k tab",
+    "command": "workbench.action.navigateEditorGroups"
   }
 ]
