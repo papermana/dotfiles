@@ -57,7 +57,6 @@
     "rgba(206,2,73,0.1)",
     "rgba(206,2,73,0.15)"
   ],
-  "prettier.eslintIntegration": true,
   "prettier.parser": "babylon",
   "extensions.autoUpdate": false,
   "diffEditor.ignoreTrimWhitespace": true,
@@ -69,7 +68,6 @@
   "markdown.extension.italic.indicator": "_",
   "markdown.extension.toc.githubCompatibility": true,
   "markdown.extension.toc.levels": "2..6",
-  "prettier.stylelintIntegration": true,
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   }
