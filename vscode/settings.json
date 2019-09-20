@@ -74,4 +74,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "tslint.packageManager": "yarn",
+  "eslint.packageManager": "yarn",
 }
