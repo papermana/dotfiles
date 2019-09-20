@@ -76,6 +76,7 @@
   },
   "tslint.packageManager": "yarn",
   "eslint.packageManager": "yarn",
+  "eslint.experimental.incrementalSync": true,
   "eslint.validate": [
     "javascript",
     "javascriptreact",
