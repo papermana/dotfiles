@@ -82,4 +82,9 @@
     { "language": "typescript", "autoFix": true },
     { "language": "typescriptreact", "autoFix": true }
   ],
+  "nasc-touchbar.addCursorBelow": false,
+  "nasc-touchbar.nextInFiles": true,
+  "nasc-touchbar.showCommands": false,
+  "nasc-touchbar.showReferences": true,
+  "nasc-touchbar.togglePanel": false
 }

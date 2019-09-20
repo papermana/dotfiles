@@ -242,7 +242,8 @@
                          "stkb.rewrap"
                          "waderyan.gitblame"
                          "yzhang.markdown-all-in-one"
-                         "zengxingxin.sort-js-object-keys"]]
+                         "zengxingxin.sort-js-object-keys"
+                         "felipe.nasc-touchbar"]]
     (println "Installing VSCode extensions:")
     (doseq [extension extensions-list]
       (println (str "Installing " extension "."))
