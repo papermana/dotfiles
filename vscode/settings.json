@@ -6,7 +6,7 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "wordWrapColumn",
   "rewrap.wrappingColumn": 80,
-  "workbench.colorTheme": "Tomorrow Night",
+  "workbench.colorTheme": "New England",
   "workbench.fontAliasing": "antialiased",
   "editor.rulers": [100],
   "workbench.colorCustomizations": {},
