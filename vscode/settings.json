@@ -6,7 +6,7 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "wordWrapColumn",
   "rewrap.wrappingColumn": 80,
-  "workbench.colorTheme": "New England",
+  "workbench.colorTheme": "Material Synthwave",
   "workbench.fontAliasing": "antialiased",
   "editor.rulers": [100],
   "workbench.colorCustomizations": {},
@@ -87,5 +87,9 @@
   "nasc-touchbar.nextInFiles": true,
   "nasc-touchbar.showCommands": false,
   "nasc-touchbar.showReferences": true,
-  "nasc-touchbar.togglePanel": false
+  "nasc-touchbar.togglePanel": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }
