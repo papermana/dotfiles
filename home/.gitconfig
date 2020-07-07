@@ -6,6 +6,8 @@
 	editor = mg
 	autocrlf = input
 	pager = diff-so-fancy | less --tabs=4 -RFXM
+[pull]
+	ff = only
 [help]
 [color]
 	ui = always
